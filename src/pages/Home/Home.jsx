@@ -1,8 +1,6 @@
-import React, {useContext} from 'react';
-import { RecipesContext } from '../../store/recipes-context';
+import React from 'react';
 
 const Home = () => {
-    const {recipes}= useContext(RecipesContext);
 
     return ( 
         <>
