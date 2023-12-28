@@ -2,7 +2,7 @@ import React from "react";
 
 function App() {
   return (
-    <div >
+    <div className="text-3xl font-bold">
       <p>Diet planer</p>
     </div>
   );
