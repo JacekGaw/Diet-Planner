@@ -2,9 +2,23 @@ import React, { createContext, useReducer } from "react";
 
 export const RecipesContext = createContext({
   recipes: [],
+  recipeAdd: () => {},
 });
 
 const recipesReducer = (state, action) => {
+  if(action.type === "ADD_RECIPE"){
+    const newArr = [
+      ...state.recipes,
+      {
+        title: action.payload.title,
+        category: action.payload.category
+      }
+    ]
+    return {
+      ...state,
+      recipes: newArr
+    }
+  }
 //   if (action.type === "ADD_PROJECT") {
 //     const newArr = [
 //       ...state.projectList,
@@ -27,18 +41,19 @@ const recipesReducer = (state, action) => {
 
 const RecipesContextProvider = ({ children }) => {
   const [recipesState, recipesDispatch] = useReducer(recipesReducer, {
-    recipes: ["HEj"]
+    recipes: []
   });
 
-//   const addProject = (projectInfo) => {
-//     projectsDispatch({
-//       type: "ADD_PROJECT",
-//       payload: projectInfo,
-//     });
-//   };
+  const addRecipe = (recipeInfo) => {
+    recipesDispatch({
+      type: "ADD_RECIPE",
+      payload: recipeInfo,
+    });
+  };
 
   const ctxValue = {
     recipes: recipesState.recipes,
+    recipeAdd: addRecipe,
   };
 
   return (
