@@ -10,6 +10,7 @@ const recipesReducer = (state, action) => {
     const newArr = [
       ...state.recipes,
       {
+        id: Math.random(),
         title: action.payload.title,
         category: action.payload.category
       }

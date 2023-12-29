@@ -11,15 +11,22 @@ const Recipes = () => {
     });
   };
 
+  const changeVisibility = (info) => {
+    setAddRecipeView(info);
+  }
+
   return (
-    <>
-      <p>Here are some recipesvdv</p>
-      <p>{recipes.map(recipe => <p>{recipe.title}</p>)}</p>
+    <section className="p-5">
+        <header>
+            <h2 className="text-center text-3xl">Recipe book</h2>
+        </header>
       <button onClick={handleChangeVisibility}>
         {addRecipeView ? "Close" : "Add recipe"}
       </button>
-      {addRecipeView === true ? <AddRecipe /> : ""}
-    </>
+      {addRecipeView === true ? <AddRecipe visibility={changeVisibility}/> : ""}
+      <p>Here are some recipesvdv</p>
+      {recipes.map(recipe => <p key={recipe.id}>{recipe.title}</p>)}
+    </section>
   );
 };
 
