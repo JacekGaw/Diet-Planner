@@ -2,6 +2,7 @@ import React, { useRef, useState, useContext } from "react";
 import Input from "../../components/UI/Input";
 import Modal from "../../components/UI/Modal";
 import { RecipesContext } from "../../store/recipes-context";
+import AddRecipeIngredients from "./AddRecipeIngredients";
 
 const AddRecipe = ({ visibility }) => {
   const { recipeAdd } = useContext(RecipesContext);
@@ -14,6 +15,7 @@ const AddRecipe = ({ visibility }) => {
   const carbRef = useRef();
   const caloriesRef = useRef();
   const [modalInfo, setModalInfo] = useState();
+  const ingredientsRef = useRef();
 
   const handleSave = () => {
     if (
@@ -102,6 +104,7 @@ const AddRecipe = ({ visibility }) => {
             min="0"
             inputClass="w-fit"
           />
+          <AddRecipeIngredients ref={ingredientsRef} />
           <button type="submit" onClick={handleSave}>
             Done
           </button>

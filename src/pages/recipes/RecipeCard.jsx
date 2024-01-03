@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { RecipesContext } from '../../store/recipes-context';
 
 const RecipeCard = ({recipeInfo}) => {
-    const {recipes, recipeDelete}= useContext(RecipesContext)
+    const {recipeDelete}= useContext(RecipesContext)
     return ( 
         <li className='p-2 border border-slate-200 rounded' >
             <header>
