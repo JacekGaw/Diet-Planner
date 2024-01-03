@@ -27,7 +27,6 @@ const AddRecipe = ({ visibility }) => {
       modal.current.open();
     } else {
       recipeAdd({
-        key: Math.random(),
         title: titleRef.current.value,
         category: categoryRef.current.value,
         description: descRef.current.value,

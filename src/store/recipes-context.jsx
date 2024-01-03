@@ -4,16 +4,24 @@ import { SAMPLE_RECIPES } from "../SAMPLE_RECIPES";
 export const RecipesContext = createContext({
   recipes: [],
   recipeAdd: () => {},
+  recipeDelete: () => {},
 });
 
 const recipesReducer = (state, action) => {
   if (action.type === "ADD_RECIPE") {
+
     const newArr = [
       ...state.recipes,
       {
         id: Math.random(),
+        add_date: new Date().toLocaleDateString("de-DE"),
         title: action.payload.title,
         category: action.payload.category,
+        description: action.payload.description,
+        proteins: action.payload.proteins,
+        fats: action.payload.fats,
+        carbohydrates: action.payload.carbohydrates,
+        calories: action.payload.calories,
       },
     ];
     return {
@@ -72,6 +80,7 @@ const RecipesContextProvider = ({ children }) => {
   const ctxValue = {
     recipes: recipesState.recipes,
     recipeAdd: addRecipe,
+    recipeDelete: deleteRecipe,
   };
 
   return (

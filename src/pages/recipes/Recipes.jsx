@@ -30,7 +30,7 @@ const Recipes = () => {
         ""
       )}
       <p>Here are some recipesvdv</p>
-      <RecipesList></RecipesList>
+      <RecipesList />
     </section>
   );
 };
