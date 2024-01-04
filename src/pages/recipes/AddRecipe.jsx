@@ -36,8 +36,9 @@ const AddRecipe = ({ visibility }) => {
         fats: fatsRef.current.value,
         carbohydrates: carbRef.current.value,
         calories: caloriesRef.current.value,
+        ingredients: ingredientsRef.current.getIngredients()
       });
-      visibility(false);
+      visibility(false);     
     }
   };
 

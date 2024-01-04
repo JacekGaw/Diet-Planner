@@ -1,26 +1,47 @@
-import React, { useState, useRef, forwardRef } from "react";
+import React, {
+  useState,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 
 const AddRecipeIngredients = forwardRef((props, ref) => {
-  const [ingredients, setIngredients] = useState([]);
-  ref = ingredients;
+    
+    const [ingredients, setIngredients] = useState([]);
   const ingredientRef = useRef();
   const amountRef = useRef();
   const unitRef = useRef();
 
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        getIngredients() {
+          return [...ingredients]
+        },
+      };
+    }, [ingredients]);
+
+
   const handleAddIngredient = () => {
+    const ingredient = ingredientRef.current.value;
+    const amount =  amountRef.current.value;
+    const unit= unitRef.current.value;
+
+    ingredientRef.current.value = '';
+    amountRef.current.value = '';
+
     setIngredients((prevState) => {
       return [
         ...prevState,
         {
           id: Math.random(),
-          ingredient: ingredientRef.current.value,
-          amount: amountRef.current.value,
-          unit: unitRef.current.value,
+          ingredient: ingredient,
+          amount: amount,
+          unit: unit,
         },
       ];
     });
-    ingredientRef.current.value = "";
-    amountRef.current.value = "";
   };
 
   return (

@@ -8,7 +8,19 @@ export const SAMPLE_RECIPES = [
         proteins: 30,
         fats: 30,
         carbohydrates: 20,
-        calories: 400
+        calories: 400,
+        ingredients: [{
+            id: Math.random(),
+            ingredient: "Jajka",
+            amount: 60,
+            unit: "g"
+        },
+        {
+            id: Math.random(),
+            ingredient: "Boczek",
+            amount: 80,
+            unit: "g"
+        }]
     },
     {
         id: Math.random(),
@@ -19,6 +31,18 @@ export const SAMPLE_RECIPES = [
         proteins: 35,
         fats: 20,
         carbohydrates: 50,
-        calories: 500
+        calories: 500,
+        ingredients: [{
+            id: Math.random(),
+            ingredient: "Płatki owsiane",
+            amount: 60,
+            unit: "g"
+        },
+        {
+            id: Math.random(),
+            ingredient: "Brzoskwinie",
+            amount: 10,
+            unit: "g"
+        }]
     }
 ]

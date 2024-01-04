@@ -16,6 +16,9 @@ const RecipeCard = ({recipeInfo}) => {
                 <p className='mx-1'>Calories: {recipeInfo.calories}</p>
             </div>
             <p className='text-sm '>{recipeInfo.description}</p>
+            {recipeInfo.ingredients.map((singleIngredient) => {
+                return <p key={singleIngredient.id}>{singleIngredient.ingredient}: {singleIngredient.amount}{singleIngredient.unit}</p>
+            })}
             <button onClick={() => recipeDelete(recipeInfo.id)} className='p-1 border border-slate-200 rounded'>Delete Recipe</button>
         </li>
     );

@@ -22,6 +22,7 @@ const recipesReducer = (state, action) => {
         fats: action.payload.fats,
         carbohydrates: action.payload.carbohydrates,
         calories: action.payload.calories,
+        ingredients: action.payload.ingredients
       },
     ];
     return {
