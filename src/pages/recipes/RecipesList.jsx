@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { RecipesContext } from "../../store/recipes-context";
 import RecipeCard from "./RecipeCard";
 
-const RecipesList = () => {
+const RecipesList = ({className, cardStyle}) => {
   const { recipes } = useContext(RecipesContext);
 
   return (
-    <ul className="grid gap-5 grid-cols-3">
+    <ul className={className}>
       {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipeInfo={recipe} />
+        <RecipeCard key={recipe.id} recipeInfo={recipe} className={cardStyle} />
       ))}
     </ul>
   );

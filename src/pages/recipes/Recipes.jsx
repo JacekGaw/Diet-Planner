@@ -19,9 +19,9 @@ const Recipes = () => {
   return (
     <section className="p-5">
       <header>
-        <h2 className="text-center text-3xl">Recipe book</h2>
+        <h2 className="text-center text-3xl text-white">Recipe book</h2>
       </header>
-      <button onClick={handleChangeVisibility}>
+      <button onClick={handleChangeVisibility} className="bg-dark-green text-white rounded p-2 text-sm mb-5">
         {addRecipeView ? "Close" : "Add recipe"}
       </button>
       {addRecipeView === true ? (
@@ -29,8 +29,7 @@ const Recipes = () => {
       ) : (
         ""
       )}
-      <p>Here are some recipesvdv</p>
-      <RecipesList />
+      <RecipesList className="flex gap-4 " cardStyle=" w-1/3 bg-white rounded-lg"/>
     </section>
   );
 };

@@ -27,7 +27,7 @@ export const SAMPLE_RECIPES = [
         add_date: "3.1.2024",
         title: "Owsianka z brzoskwiniami",
         category: "sweet",
-        description: "Owsianka z brzoskwiniami. Słodki posiłek, idealny na śniadanie lub podwieczorek. Do przygotowania również w lodówce wieczór przed.",
+        description: "Owsianka z brzoskwiniami. Słodki posiłek. ",
         proteins: 35,
         fats: 20,
         carbohydrates: 50,

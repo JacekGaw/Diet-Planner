@@ -11,7 +11,7 @@ function App() {
     <RecipesContextProvider>
       <section>
         <Menu />
-        <main>
+        <main className="bg-gradient-to-br from-green to-green2 min-h-screen">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Recipes" element={<Recipes />} />

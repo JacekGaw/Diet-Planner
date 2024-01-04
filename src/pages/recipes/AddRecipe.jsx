@@ -45,9 +45,9 @@ const AddRecipe = ({ visibility }) => {
   return (
     <>
       <Modal ref={modal}>{modalInfo}</Modal>
-      <section>
+      <section className="border-2 mb-5 border-dark-green rounded-md p-5">
         <header>
-          <h3 className="text-center">Add recipe to your recipe book:</h3>
+          <h3 className="text-center text-white">Add recipe to your recipe book:</h3>
         </header>
         <form
           onSubmit={(e) => {
