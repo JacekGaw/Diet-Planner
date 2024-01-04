@@ -45,7 +45,7 @@ const AddRecipe = ({ visibility }) => {
   return (
     <>
       <Modal ref={modal}>{modalInfo}</Modal>
-      <section className="border-2 mb-5 border-dark-green rounded-md p-5">
+      <section className="mb-5 bg-dark-green rounded-lg p-5">
         <header>
           <h3 className="text-center text-white">Add recipe to your recipe book:</h3>
         </header>
@@ -53,24 +53,24 @@ const AddRecipe = ({ visibility }) => {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="mx-5 bg-slate-200 rounded-md p-5 flex flex-col justify-center items-center"
+          className="mx-5 bg-slate-200 rounded-md p-5 "
         >
           <div>
             <Input
               label="Recipe title:"
               inputType="text"
               ref={titleRef}
-              labelClass=""
-              inputClass="w-fit"
+              labelClass="text-white mr-2"
+              inputClass="w-fit rounded-md p-1"
             />
-            <label>Recipe category:</label>
-            <select ref={categoryRef} className="w-fit">
+            <label className="text-white m-2">Recipe category:</label>
+            <select ref={categoryRef} className="w-fit p-1 rounded-md">
               <option value="sweet">Sweet</option>
               <option value="snack">Snack</option>
               <option value="main">Main Dish</option>
             </select>
           </div>
-          <label>Recipe description:</label>
+          <label className="text-white mr-2">Recipe description:</label>
           <textarea
             className="whitespace-pre-line w-fit"
             ref={descRef}
@@ -82,6 +82,7 @@ const AddRecipe = ({ visibility }) => {
               ref={proteinRef}
               min="0"
               inputClass="w-fit"
+              labelClass="text-white mr-2"
             />
             <Input
               label="Fats:"
@@ -89,6 +90,7 @@ const AddRecipe = ({ visibility }) => {
               ref={fatsRef}
               min="0"
               inputClass="w-fit"
+              labelClass="text-white mx-2"
             />
             <Input
               label="Carbohydrates:"
@@ -96,6 +98,7 @@ const AddRecipe = ({ visibility }) => {
               ref={carbRef}
               min="0"
               inputClass="w-fit"
+              labelClass="text-white mx-2"
             />
           </div>
           <Input
@@ -104,6 +107,7 @@ const AddRecipe = ({ visibility }) => {
             ref={caloriesRef}
             min="0"
             inputClass="w-fit"
+            labelClass="text-white mr-2"
           />
           <AddRecipeIngredients ref={ingredientsRef} />
           <button type="submit" onClick={handleSave}>
