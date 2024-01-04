@@ -19,7 +19,7 @@ const MealPlanForm = forwardRef((props, ref) => {
             setError('');
             return {
               duration: planDurationRef.current.value,
-              startDate: dateRef.current.value,
+              startDate: new Date(dateRef.current.value),
             };
           } else {
             setError("Date is incorrect!");
@@ -49,7 +49,6 @@ const MealPlanForm = forwardRef((props, ref) => {
           type="date"
           className="p-2 border border-slate-200 mx-2"
           ref={dateRef}
-          pattern="\d{4}-\d{2}-\d{2}"
         ></input>
       </div>
       <p className="text-red-">{error}</p>
