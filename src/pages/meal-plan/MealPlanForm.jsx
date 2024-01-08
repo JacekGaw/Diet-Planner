@@ -5,6 +5,8 @@ import React, {
   useImperativeHandle,
 } from "react";
 
+const moment = require('moment');
+
 const MealPlanForm = forwardRef((props, ref) => {
   const planDurationRef = useRef();
   const dateRef = useRef();
@@ -15,7 +17,7 @@ const MealPlanForm = forwardRef((props, ref) => {
     () => {
       return {
         getPlanInfo() {
-          if (new Date(dateRef.current.value).toLocaleDateString() >= new Date().toLocaleDateString()) {
+          if (moment(dateRef.current.value).isSameOrAfter(moment().startOf('day'))) {
             setError('');
             return {
               duration: planDurationRef.current.value,
