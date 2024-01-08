@@ -7,7 +7,7 @@ import React, {
 
 const moment = require('moment');
 
-const MealPlanForm = forwardRef((props, ref) => {
+const MealPlanForm = forwardRef(({children}, ref) => {
   const planDurationRef = useRef();
   const dateRef = useRef();
   const [error, setError] = useState();
@@ -54,6 +54,7 @@ const MealPlanForm = forwardRef((props, ref) => {
         ></input>
       </div>
       <p className="text-red-">{error}</p>
+      {children}
     </div>
   );
 });

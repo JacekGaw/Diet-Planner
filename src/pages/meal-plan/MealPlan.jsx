@@ -5,16 +5,25 @@ import MealPlanTemplate from "./MealPlanTemplate";
 
 const MealPlan = () => {
   const planFormRef = useRef();
-  const [planTemplate, setPlanTemplate] = useState({duration: null, startDate: null});
+  const [mealPlanFormVisibility, setMealPlanFormVisibility] = useState(true);
+  const [planTemplate, setPlanTemplate] = useState();
 
-  const handleClick = (e) => {
+  const handleCreate = (e) => {
     e.preventDefault();
-    if(planFormRef.current.getPlanInfo() !== undefined){
-        const planInfo = planFormRef.current.getPlanInfo()
-        setPlanTemplate({duration: planInfo.duration, startDate: planInfo.startDate});
+    if (planFormRef.current.getPlanInfo() !== undefined) {
+      setMealPlanFormVisibility(false)
+      const planInfo = planFormRef.current.getPlanInfo();
+      setPlanTemplate({
+        duration: planInfo.duration,
+        startDate: planInfo.startDate,
+      });
     }
-
   };
+
+  const handleCancel = () => {
+    setMealPlanFormVisibility(true);
+    setPlanTemplate();
+  }
 
   // Plan na dalsze działanie to wyświetlenie template
   return (
@@ -23,10 +32,15 @@ const MealPlan = () => {
         <h2 className="text-center text-3xl p-5">Meal Plan</h2>
       </header>
       <form className="">
-        <MealPlanForm ref={planFormRef} />
-        <button onClick={handleClick}>Create</button>
+        {mealPlanFormVisibility ? (
+          <MealPlanForm ref={planFormRef}>
+            <button onClick={handleCreate}>Create</button>
+          </MealPlanForm>
+        ) : (
+          <button onClick={handleCancel}>Cancel</button>
+        )}
       </form>
-      <MealPlanTemplate template={planTemplate}/>
+      {planTemplate ? <MealPlanTemplate template={planTemplate} /> : ""}
     </section>
   );
 };

@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import PlanDay from "./PlanDay";
+const moment = require("moment");
 
 const MealPlanTemplate = ({ template }) => {
-  const startDate = template.startDate;
-  let duration = template.duration;
-  if (duration === "day") duration = 1;
-  else if (duration === "week") duration = 7;
-  else if(duration ==='month') duration = 31;
+  const [duration, setDuration] = useState();
+  useEffect(() => {
+    let durationDate = template.duration;
+    if (durationDate === "day") setDuration(1);
+    else if (durationDate === "week") setDuration(7);
+    else if (durationDate === "month") setDuration(31);
+  }, []);
+  let daysArray = new Array(duration).fill('a');
 
+  // let futureDate = new Date();
+  // futureDate = futureDate.setDate(startDate.getDate()+30);
+  // console.log(new Date(futureDate));
   return (
     <>
-      <p>{duration}</p>
+      <div>
+        {daysArray.map((day, index) => {
+          return <PlanDay key={index} index={index} date={template.startDate} />
+        })}
+        <p>{duration}</p>
+      </div>
     </>
   );
 };
