@@ -11,10 +11,14 @@ const MealPlan = () => {
   const handleCreate = (e) => {
     e.preventDefault();
     if (planFormRef.current.getPlanInfo() !== undefined) {
-      setMealPlanFormVisibility(false)
+      setMealPlanFormVisibility(false);
       const planInfo = planFormRef.current.getPlanInfo();
+      let durationInt = 0;
+      if (planInfo.duration === "day") durationInt = 1;
+      else if (planInfo.duration === "week") durationInt = 7;
+      else if (planInfo.duration === "month") durationInt = 31;
       setPlanTemplate({
-        duration: planInfo.duration,
+        duration: durationInt,
         startDate: planInfo.startDate,
       });
     }
@@ -23,7 +27,7 @@ const MealPlan = () => {
   const handleCancel = () => {
     setMealPlanFormVisibility(true);
     setPlanTemplate();
-  }
+  };
 
   // Plan na dalsze działanie to wyświetlenie template
   return (

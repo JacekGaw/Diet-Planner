@@ -5,25 +5,14 @@ import { RecipesContext } from "../../store/recipes-context";
 import RecipeListItem from "./RecipeListItem";
 
 const MealPlanTemplate = ({ template }) => {
-    const [recipesInPlan, setRecipesInPlan] = useState([]);
+  let daysArray = [];
+  for (let i = 0; i < template.duration; i++) {
+    daysArray[i] = { id: i, recipesIDs: [] };
+  }
+  const [recipesInPlan, setRecipesInPlan] = useState(daysArray);
   const [currentDay, setCurrentDay] = useState();
   const modalRef = useRef();
   const { recipes } = useContext(RecipesContext);
-  const [duration, setDuration] = useState();
-  let daysArray = [];
-
-  useEffect(() => {
-    let durationDate = template.duration;
-    if (durationDate === "day") setDuration(1);
-    else if (durationDate === "week") setDuration(7);
-    else if (durationDate === "month") setDuration(31);
-  }, []);
-
-  for (let i = 0; i < duration; i++) {
-    daysArray[i] = { id: i, recipesIDs: [] };
-  }
-    
-    // setRecipesInPlan(daysArray);
 
   const handleClickOnAddRecipe = (index) => {
     modalRef.current.open();
@@ -31,9 +20,15 @@ const MealPlanTemplate = ({ template }) => {
   };
 
   const handleOnRecipeClick = (recipeID) => {
-    console.log(recipeID);
-    console.log(currentDay);
-    
+    const newArr = recipesInPlan.map((prevItem) => {
+      if (prevItem.id === currentDay) {
+        return {
+          ...prevItem,
+          recipesIDs: [...prevItem.recipesIDs, recipeID],
+        };
+      } else return prevItem;
+    });
+    setRecipesInPlan(newArr);
   };
 
   return (
@@ -52,7 +47,7 @@ const MealPlanTemplate = ({ template }) => {
         </ul>
       </Modal>
       <div className="p-5 flex w-full overflow-x-auto">
-        {daysArray.map((day, index) => {
+        {recipesInPlan.map((day, index) => {
           return (
             <PlanDay key={index} index={index} date={template.startDate}>
               <div className="w-full flex justify-center p-1">
@@ -63,16 +58,19 @@ const MealPlanTemplate = ({ template }) => {
                   Add recipe +
                 </button>
               </div>
-              {recipesInPlan[index] ? (
-                <p>there are recipes</p>
-              ) : (
-                <p>No recipes for this day</p>
-              )}
+              <div className="flex-row">
+                {recipesInPlan[index] ? (
+                  <div className="flex-col">{recipesInPlan[index].recipesIDs}</div>
+                  //Jest wyswietlone id, teraz przeszukac recipes i wyswietlic tytuly
+                ) : (
+                  <p>No recipes for this day</p>
+                )}
+              </div>
             </PlanDay>
           );
         })}
       </div>
-      <button onClick={() => (console.log(recipesInPlan))}>Show stack</button>
+      <button onClick={() => console.log(recipesInPlan)}>Show stack</button>
     </>
   );
 };
