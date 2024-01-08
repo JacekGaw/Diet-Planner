@@ -5,10 +5,12 @@ import Home from "./pages/Home/Home.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RecipesContextProvider from "./store/recipes-context.jsx";
 import MealPlan from "./pages/meal-plan/MealPlan.jsx";
+import MealPlanContextProvider from "./store/meal-plan-context.jsx";
 
 function App() {
   return (
     <RecipesContextProvider>
+      <MealPlanContextProvider>
       <section>
         <Menu />
         <main className="bg-gradient-to-br from-green to-green2 min-h-screen">
@@ -19,6 +21,7 @@ function App() {
           </Routes>
         </main>
       </section>
+      </MealPlanContextProvider>
     </RecipesContextProvider>
   );
 }
