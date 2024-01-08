@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PlanDay from "./PlanDay";
+import PlanDay from "../../components/UI/PlanDayCard";
 const moment = require("moment");
 
 const MealPlanTemplate = ({ template }) => {
@@ -17,11 +17,10 @@ const MealPlanTemplate = ({ template }) => {
   // console.log(new Date(futureDate));
   return (
     <>
-      <div>
+      <div className="m-5 flex w-full overflow-x-auto">
         {daysArray.map((day, index) => {
-          return <PlanDay key={index} index={index} date={template.startDate} />
+          return <PlanDay key={index} index={index} date={template.startDate}></PlanDay>
         })}
-        <p>{duration}</p>
       </div>
     </>
   );

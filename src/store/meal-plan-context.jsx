@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from "react";
+import { SAMPLE_PLAN } from "../SAMPLE_PLAN";
 
 export const MealPlanContext = createContext({
-    plan: []
+    plans: []
 });
 
 const mealPlanReducer = (state, action) => {
@@ -11,11 +12,20 @@ const mealPlanReducer = (state, action) => {
 
 const MealPlanContextProvider = ({children}) => {
     const [mealPlanState, mealPlanDispatch] = useReducer(mealPlanReducer, {
-        plan: [],
-    })
+        plans: [...SAMPLE_PLAN],
+    });
+
+    const addMealPlan = () => {
+        mealPlanDispatch({
+            type: 'ADD_MEALPLAN',
+            payload: {
+
+            }
+        })
+    }
 
     const ctxValue = {
-        plan: mealPlanState.plan,
+        plans: mealPlanState.plans,
     }
 
     return (
