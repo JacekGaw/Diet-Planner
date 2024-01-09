@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import PlanDay from "../../components/UI/PlanDayCard";
+import PlanDayCard from "../../components/UI/PlanDayCard";
 import Modal from "../../components/UI/Modal";
 import { RecipesContext } from "../../store/recipes-context";
+import { MealPlanContext } from "../../store/meal-plan-context";
 import RecipeListItem from "./RecipeListItem";
 
 const MealPlanTemplate = ({ template }) => {
@@ -13,6 +14,7 @@ const MealPlanTemplate = ({ template }) => {
   const [currentDay, setCurrentDay] = useState();
   const modalRef = useRef();
   const { recipes } = useContext(RecipesContext);
+  const { plans } = useContext(MealPlanContext);
 
   const handleClickOnAddRecipe = (index) => {
     modalRef.current.open();
@@ -30,6 +32,20 @@ const MealPlanTemplate = ({ template }) => {
     });
     setRecipesInPlan(newArr);
   };
+
+  const displayTitles = (recipesIDs) => {
+    let arr = [];
+    recipesIDs.map((recipeID) => {
+      return arr.push(
+        recipes.filter((recipe) => recipe.id === recipeID)[0].title
+      );
+    });
+    return arr;
+  };
+
+  const onSavePlan = () => {
+
+  }
 
   return (
     <>
@@ -49,7 +65,7 @@ const MealPlanTemplate = ({ template }) => {
       <div className="p-5 flex w-full overflow-x-auto">
         {recipesInPlan.map((day, index) => {
           return (
-            <PlanDay key={index} index={index} date={template.startDate}>
+            <PlanDayCard key={index} index={index} date={template.startDate}>
               <div className="w-full flex justify-center p-1">
                 <button
                   className="p-2 bg-slate-500 text-white text-sm hover:shadow-lg transition-shadow duration-100"
@@ -60,17 +76,24 @@ const MealPlanTemplate = ({ template }) => {
               </div>
               <div className="flex-row">
                 {recipesInPlan[index] ? (
-                  <div className="flex-col">{recipesInPlan[index].recipesIDs}</div>
-                  //Jest wyswietlone id, teraz przeszukac recipes i wyswietlic tytuly
+                  <div className="">
+                    {recipesInPlan[index].recipesIDs.length > 0
+                      ? recipesInPlan[index].recipesIDs.map((recipeID) => {
+                          return <p key={recipeID}>{recipes.filter(
+                            (recipe) => recipe.id === recipeID
+                          )[0].title}</p>
+                        })
+                      : ""}
+                  </div>
                 ) : (
                   <p>No recipes for this day</p>
                 )}
               </div>
-            </PlanDay>
+            </PlanDayCard>
           );
         })}
       </div>
-      <button onClick={() => console.log(recipesInPlan)}>Show stack</button>
+      <button onClick={onSavePlan}>Save Plan</button>
     </>
   );
 };
