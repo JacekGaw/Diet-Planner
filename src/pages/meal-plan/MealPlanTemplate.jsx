@@ -4,6 +4,7 @@ import Modal from "../../components/UI/Modal";
 import { RecipesContext } from "../../store/recipes-context";
 import { MealPlanContext } from "../../store/meal-plan-context";
 import RecipeListItem from "./RecipeListItem";
+import MealsInPlanList from "./MealsInPlanList";
 
 const MealPlanTemplate = ({ template }) => {
   let daysArray = [];
@@ -44,7 +45,7 @@ const MealPlanTemplate = ({ template }) => {
   };
 
   const onSavePlan = () => {
-
+    console.log(recipesInPlan);
   }
 
   return (
@@ -65,7 +66,7 @@ const MealPlanTemplate = ({ template }) => {
       <div className="p-5 flex w-full overflow-x-auto">
         {recipesInPlan.map((day, index) => {
           return (
-            <PlanDayCard key={index} index={index} date={template.startDate}>
+            <PlanDayCard key={index} index={index} date={template.startDate} recipesIDs={recipesInPlan[index].recipesIDs}>
               <div className="w-full flex justify-center p-1">
                 <button
                   className="p-2 bg-slate-500 text-white text-sm hover:shadow-lg transition-shadow duration-100"
@@ -74,21 +75,22 @@ const MealPlanTemplate = ({ template }) => {
                   Add recipe +
                 </button>
               </div>
-              <div className="flex-row">
+              <MealsInPlanList recipesInPlan={recipesInPlan[index]}></MealsInPlanList>
+              {/* <div className="flex-row">
                 {recipesInPlan[index] ? (
-                  <div className="">
+                  <ul className="">
                     {recipesInPlan[index].recipesIDs.length > 0
                       ? recipesInPlan[index].recipesIDs.map((recipeID) => {
-                          return <p key={recipeID}>{recipes.filter(
+                          return <li key={recipeID}>{recipes.filter(
                             (recipe) => recipe.id === recipeID
-                          )[0].title}</p>
+                          )[0].title}</li>
                         })
                       : ""}
-                  </div>
+                  </ul>
                 ) : (
                   <p>No recipes for this day</p>
                 )}
-              </div>
+              </div> */}
             </PlanDayCard>
           );
         })}
