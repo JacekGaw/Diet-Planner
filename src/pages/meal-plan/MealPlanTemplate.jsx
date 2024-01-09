@@ -36,6 +36,22 @@ const MealPlanTemplate = ({ template }) => {
 
   const onSavePlan = () => {
     addMealPlan(recipesInPlan);
+    console.log(recipesInPlan);
+  };
+
+  const handleDeleteRecipe = (dayIndex, givenRecipeIndex) => {
+    const newRecipesArr = recipesInPlan[dayIndex].recipesIDs;
+    newRecipesArr.splice(givenRecipeIndex, 1);
+    const newArr = recipesInPlan.map((item) => {
+      if (item.id === dayIndex) {
+        return {
+          id: item.id,
+          recipesIDs: newRecipesArr,
+        };
+      } else return item;
+    });
+
+    setRecipesInPlan(newArr);
   };
 
   return (
@@ -71,7 +87,9 @@ const MealPlanTemplate = ({ template }) => {
                 </button>
               </div>
               <MealsInPlanList
-                recipesInPlan={recipesInPlan[index]}
+                recipesInPlan={recipesInPlan}
+                dayIndex={index}
+                onDeleteRecipe={handleDeleteRecipe}
               ></MealsInPlanList>
             </PlanDayCard>
           );

@@ -1,18 +1,52 @@
-import React, { useContext } from "react";
-import { MealPlanContext } from "../../store/meal-plan-context";
+import React, { useContext, useState } from "react";
+
 import { RecipesContext } from "../../store/recipes-context";
 
-const MealsInPlanList = ({ recipesInPlan, children }) => {
+const MealsInPlanList = ({ recipesInPlan, dayIndex, onDeleteRecipe,children }) => {
   const { recipes } = useContext(RecipesContext);
+  const [mouseOver, setMouseOver] = useState(false);
+
+  const handleMouseOver = () => {
+    setMouseOver(true);
+  };
+  const handleMouseLeave = () => {
+    setMouseOver(false);
+  };
 
   return (
     <div className="flex-row">
-      {recipesInPlan.recipesIDs.length > 0 ? (
+      {recipesInPlan[dayIndex].recipesIDs.length > 0 ? (
         <ul className="">
-          {recipesInPlan.recipesIDs.map((recipeID, index) => {
+          {recipesInPlan[dayIndex].recipesIDs.map((recipeID, index) => {
+            const recipe = recipes.filter(
+              (recipe) => recipe.id === recipeID
+            )[0];
             return (
-              <li key={index}>
-                {recipes.filter((recipe) => recipe.id === recipeID)[0].title}
+              <li
+                key={index}
+                onMouseOver={handleMouseOver}
+                onMouseLeave={handleMouseLeave}
+                className="relative"
+              >
+                <header>
+                  <h6 className="text-md font-semibol">{recipe.title}</h6>
+                </header>
+                <div className="flex text-xs font-light">
+                  <p>P: {recipe.proteins}</p>
+                  <p>F: {recipe.fats}</p>
+                  <p>C: {recipe.carbohydrates}</p>
+                </div>
+                <p className="text-xs font-light">
+                  Calories: {recipe.calories}
+                </p>
+                <p className="text-xs font-light">
+                  Ingredients: {recipe.ingredients.length}
+                </p>
+                {mouseOver && (
+                  <div className="absolute w-full h-full top-0 left-0">
+                    <button className="absolute top-1/2 left-1/2 -translate-x-1/2" onClick={() => {onDeleteRecipe(dayIndex, index)}}>Delete</button>
+                  </div>
+                )}
               </li>
             );
           })}
