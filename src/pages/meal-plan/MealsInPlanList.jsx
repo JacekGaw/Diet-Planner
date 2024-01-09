@@ -9,9 +9,9 @@ const MealsInPlanList = ({ recipesInPlan, children }) => {
     <div className="flex-row">
       {recipesInPlan.recipesIDs.length > 0 ? (
         <ul className="">
-          {recipesInPlan.recipesIDs.map((recipeID) => {
+          {recipesInPlan.recipesIDs.map((recipeID, index) => {
             return (
-              <li key={recipeID}>
+              <li key={index}>
                 {recipes.filter((recipe) => recipe.id === recipeID)[0].title}
               </li>
             );

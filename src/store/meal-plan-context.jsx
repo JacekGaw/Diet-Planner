@@ -2,11 +2,26 @@ import React, { createContext, useReducer } from "react";
 import { SAMPLE_PLAN } from "../SAMPLE_PLAN";
 
 export const MealPlanContext = createContext({
-    plans: []
+    plans: [],
+    addMealPlan: () => {},
 });
 
 const mealPlanReducer = (state, action) => {
+    if(action.type === 'ADD_MEALPLAN'){
+        const newArr = [
+            ...state.plans,
+            {
+                id: Math.random(),
+                planConfig: action.payload
+            }
+        ];
+        return {
+            ...state,
+            plans: newArr
+        }
+    }
 
+    return state;
 }
 
 
@@ -15,17 +30,17 @@ const MealPlanContextProvider = ({children}) => {
         plans: [...SAMPLE_PLAN],
     });
 
-    const addMealPlan = () => {
+    const addMealPlan = (plan) => {
+        console.log(plan);
         mealPlanDispatch({
             type: 'ADD_MEALPLAN',
-            payload: {
-
-            }
+            payload: plan
         })
     }
 
     const ctxValue = {
         plans: mealPlanState.plans,
+        addMealPlan: addMealPlan
     }
 
     return (
