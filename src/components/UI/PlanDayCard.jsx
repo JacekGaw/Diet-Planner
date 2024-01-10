@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { RecipesContext } from "../../store/recipes-context";
 
 const PlanDayCard = ({ index, date, dayInfo, children }) => {
-  const {recipes, returnMacro} = useContext(RecipesContext);
+  const { recipes } = useContext(RecipesContext);
 
   let helperDate = new Date();
   helperDate = helperDate.setDate(date.getDate() + index);
@@ -13,11 +13,31 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
     year: new Date(helperDate).getFullYear(),
   };
 
-  const dayMacros = () => { 
-    if(dayInfo.length > 0) {
-      returnMacro(dayInfo);
+  const getMacro = (macro) => {
+    let givenMacro = 0;
+    if (dayInfo.length > 0) {
+      dayInfo.map((recipeID) => {
+        if (macro === "proteins") {
+          return (givenMacro += recipes.filter(
+            (recipe) => recipe.id === recipeID
+          )[0].proteins);
+        } else if (macro === "fats") {
+          return (givenMacro += recipes.filter(
+            (recipe) => recipe.id === recipeID
+          )[0].fats);
+        } else if (macro === "carbohydrates") {
+          return (givenMacro += recipes.filter(
+            (recipe) => recipe.id === recipeID
+          )[0].carbohydrates);
+        } else if (macro === "calories") {
+          return (givenMacro += recipes.filter(
+            (recipe) => recipe.id === recipeID
+          )[0].calories);
+        }
+      });
+      return givenMacro;
     }
-    // console.log(info);
+    else return 0;
   };
 
   return (
@@ -28,9 +48,13 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
           {dateOjb.day}-{dateOjb.month}-{dateOjb.year}
         </h6>
       </header>
-      <div className="p-2 px-5 flex justify-center">
-        <p>{}</p>
+      <div className="p-1 px-5 flex justify-center gap-2 text-xs font-light">
+        <p>P:{getMacro("proteins")}</p>
+        <p>F:{getMacro("fats")}</p>
+        <p>C:{getMacro("carbohydrates")}</p>
+        <p>{getMacro("calories")}kcal</p>
       </div>
+      <p className="text-center text-xs font-light pb-1">{dayInfo.length} meals</p>
       <div className="min-h-64 bg-white">{children}</div>
     </div>
   );
