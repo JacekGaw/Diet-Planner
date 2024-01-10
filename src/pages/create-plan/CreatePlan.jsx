@@ -5,7 +5,7 @@ import CreatePlanTemplate from "./CreatePlanTemplate";
 const CreatePlan = () => {
   const planFormRef = useRef();
   const [mealPlanFormVisibility, setMealPlanFormVisibility] = useState(true);
-  const [planTemplate, setPlanTemplate] = useState();
+  const [planTemplate, setPlanTemplate] = useState(false);
 
   const handleCreate = (e) => {
     e.preventDefault();
@@ -25,10 +25,13 @@ const CreatePlan = () => {
 
   const handleCancel = () => {
     setMealPlanFormVisibility(true);
-    setPlanTemplate();
+    setPlanTemplate(false);
   };
 
-  // Plan na dalsze działanie to wyświetlenie template
+  const handleTemplateVisibility = (val) => {
+    setPlanTemplate(val);
+    setMealPlanFormVisibility(!val);
+  };
   return (
     <section>
       <header>
@@ -43,7 +46,12 @@ const CreatePlan = () => {
           <button onClick={handleCancel}>Cancel</button>
         )}
       </form>
-      {planTemplate ? <CreatePlanTemplate template={planTemplate} /> : ""}
+      {planTemplate && (
+        <CreatePlanTemplate
+          template={planTemplate}
+          setVisibility={handleTemplateVisibility}
+        />
+      )}
     </section>
   );
 };

@@ -1,9 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { RecipesContext } from "../../store/recipes-context";
+import React from "react";
 
 const PlanDayCard = ({ index, date, dayInfo, children }) => {
-  const { recipes } = useContext(RecipesContext);
-
   let helperDate = new Date();
   helperDate = helperDate.setDate(date.getDate() + index);
 
@@ -14,30 +11,22 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
   };
 
   const getMacro = (macro) => {
-    let givenMacro = 0;
-    if (dayInfo.length > 0) {
-      dayInfo.map((recipeID) => {
-        if (macro === "proteins") {
-          return (givenMacro += recipes.filter(
-            (recipe) => recipe.id === recipeID
-          )[0].proteins);
-        } else if (macro === "fats") {
-          return (givenMacro += recipes.filter(
-            (recipe) => recipe.id === recipeID
-          )[0].fats);
-        } else if (macro === "carbohydrates") {
-          return (givenMacro += recipes.filter(
-            (recipe) => recipe.id === recipeID
-          )[0].carbohydrates);
-        } else if (macro === "calories") {
-          return (givenMacro += recipes.filter(
-            (recipe) => recipe.id === recipeID
-          )[0].calories);
-        }
-      });
-      return givenMacro;
-    }
-    else return 0;
+    let returnVal = 0;
+    dayInfo.map((singleRecipe) => {
+      if (macro === "proteins") {
+        return (returnVal += singleRecipe.proteins);
+      } else if (macro === "fats") {
+        return (returnVal += singleRecipe.fats);
+      }
+      else if (macro === "carbohydrates") {
+        return (returnVal += singleRecipe.carbohydrates);
+      }
+      else if (macro === "calories") {
+        return (returnVal += singleRecipe.calories);
+      }
+    });
+
+    return returnVal;
   };
 
   return (
@@ -54,7 +43,9 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
         <p>C:{getMacro("carbohydrates")}</p>
         <p>{getMacro("calories")}kcal</p>
       </div>
-      <p className="text-center text-xs font-light pb-1">{dayInfo.length} meals</p>
+      <p className="text-center text-xs font-light pb-1">
+        {dayInfo.length} meals
+      </p>
       <div className="min-h-64 bg-white">{children}</div>
     </div>
   );

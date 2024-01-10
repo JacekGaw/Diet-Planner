@@ -13,13 +13,14 @@ const MealsInPlanList = ({ recipesInPlan, dayIndex, onDeleteRecipe,children }) =
     setMouseOver(false);
   };
 
+
   return (
     <div className="flex-row">
-      {recipesInPlan[dayIndex].recipesIDs.length > 0 ? (
+      {recipesInPlan[dayIndex].recipesArr.length > 0 ? (
         <ul className="">
-          {recipesInPlan[dayIndex].recipesIDs.map((recipeID, index) => {
+          {recipesInPlan[dayIndex].recipesArr.map((singleRecipe, index) => {
             const recipe = recipes.filter(
-              (recipe) => recipe.id === recipeID
+              (recipe) => recipe.id === singleRecipe.id
             )[0];
             return (
               <li
