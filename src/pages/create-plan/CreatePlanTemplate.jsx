@@ -6,10 +6,10 @@ import { MealPlanContext } from "../../store/meal-plan-context";
 import RecipeListItem from "./RecipeListItem";
 import MealsInPlanList from "./MealsInPlanList";
 
-const CreatePlanTemplate = ({ template, setVisibility }) => {
+const CreatePlanTemplate = ({ template }) => {
   let daysArray = [];
   for (let i = 0; i < template.duration; i++) {
-    daysArray[i] = { id: i, recipesArr: [] };
+    daysArray[i] = { id: i, recipesIDs: [] };
   }
   const [recipesInPlan, setRecipesInPlan] = useState(daysArray);
   const [currentDay, setCurrentDay] = useState();
@@ -22,12 +22,12 @@ const CreatePlanTemplate = ({ template, setVisibility }) => {
     setCurrentDay(index);
   };
 
-  const handleOnRecipeClick = (recipeInfo) => {
+  const handleOnRecipeClick = (recipeID) => {
     const newArr = recipesInPlan.map((prevItem) => {
       if (prevItem.id === currentDay) {
         return {
           ...prevItem,
-          recipesArr: [...prevItem.recipesArr, recipeInfo],
+          recipesIDs: [...prevItem.recipesIDs, recipeID],
         };
       } else return prevItem;
     });
@@ -36,20 +36,21 @@ const CreatePlanTemplate = ({ template, setVisibility }) => {
 
   const onSavePlan = () => {
     addMealPlan(recipesInPlan);
-    setVisibility(false);
+    console.log(recipesInPlan);
   };
 
   const handleDeleteRecipe = (dayIndex, givenRecipeIndex) => {
-    const newRecipesArr = recipesInPlan[dayIndex].recipesArr;
+    const newRecipesArr = recipesInPlan[dayIndex].recipesIDs;
     newRecipesArr.splice(givenRecipeIndex, 1);
     const newArr = recipesInPlan.map((item) => {
       if (item.id === dayIndex) {
         return {
           id: item.id,
-          recipesArr: newRecipesArr,
+          recipesIDs: newRecipesArr,
         };
       } else return item;
     });
+
     setRecipesInPlan(newArr);
   };
 
@@ -62,7 +63,7 @@ const CreatePlanTemplate = ({ template, setVisibility }) => {
               <RecipeListItem
                 title={recipe.title}
                 key={recipe.id}
-                onClick={() => handleOnRecipeClick(recipe)}
+                onClick={() => handleOnRecipeClick(recipe.id)}
               ></RecipeListItem>
             );
           })}
@@ -75,7 +76,7 @@ const CreatePlanTemplate = ({ template, setVisibility }) => {
               key={index}
               index={index}
               date={template.startDate}
-              dayInfo={recipesInPlan[index].recipesArr}
+              dayInfo={recipesInPlan[index].recipesIDs}
             >
               <div className="w-full flex justify-center p-1">
                 <button
