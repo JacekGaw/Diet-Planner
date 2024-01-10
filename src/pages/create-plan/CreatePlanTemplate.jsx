@@ -6,7 +6,7 @@ import { MealPlanContext } from "../../store/meal-plan-context";
 import RecipeListItem from "./RecipeListItem";
 import MealsInPlanList from "./MealsInPlanList";
 
-const MealPlanTemplate = ({ template }) => {
+const CreatePlanTemplate = ({ template }) => {
   let daysArray = [];
   for (let i = 0; i < template.duration; i++) {
     daysArray[i] = { id: i, recipesIDs: [] };
@@ -76,7 +76,7 @@ const MealPlanTemplate = ({ template }) => {
               key={index}
               index={index}
               date={template.startDate}
-              recipesIDs={recipesInPlan[index].recipesIDs}
+              dayInfo={recipesInPlan[index].recipesIDs}
             >
               <div className="w-full flex justify-center p-1">
                 <button
@@ -100,4 +100,4 @@ const MealPlanTemplate = ({ template }) => {
   );
 };
 
-export default MealPlanTemplate;
+export default CreatePlanTemplate;

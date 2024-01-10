@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { RecipesContext } from "../../store/recipes-context";
 
-const PlanDay = ({ index, date, children }) => {
+const PlanDayCard = ({ index, date, dayInfo, children }) => {
+  const {recipes, returnMacro} = useContext(RecipesContext);
+
   let helperDate = new Date();
   helperDate = helperDate.setDate(date.getDate() + index);
+
   const dateOjb = {
     day: new Date(helperDate).getDate(),
     month: new Date(helperDate).getMonth() + 1,
     year: new Date(helperDate).getFullYear(),
+  };
+
+  const dayMacros = () => { 
+    if(dayInfo.length > 0) {
+      returnMacro(dayInfo);
+    }
+    // console.log(info);
   };
 
   return (
@@ -17,9 +28,12 @@ const PlanDay = ({ index, date, children }) => {
           {dateOjb.day}-{dateOjb.month}-{dateOjb.year}
         </h6>
       </header>
+      <div className="p-2 px-5 flex justify-center">
+        <p>{}</p>
+      </div>
       <div className="min-h-64 bg-white">{children}</div>
     </div>
   );
 };
 
-export default PlanDay;
+export default PlanDayCard;

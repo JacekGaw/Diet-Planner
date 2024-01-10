@@ -5,6 +5,7 @@ export const RecipesContext = createContext({
   recipes: [],
   recipeAdd: () => {},
   recipeDelete: () => {},
+  returnMacro: () => {},
 });
 
 const recipesReducer = (state, action) => {
@@ -39,23 +40,12 @@ const recipesReducer = (state, action) => {
       recipes: newArr,
     };
   }
-  //   if (action.type === "ADD_PROJECT") {
-  //     const newArr = [
-  //       ...state.projectList,
-  //       {
-  //         id: Math.random(),
-  //         title: action.payload.title,
-  //         desc: action.payload.desc,
-  //         date: action.payload.date,
-  //         todos: [],
-  //       },
-  //     ];
+  if (action.type === "RETURN_MACRO") {
+    let macroCount = 0;
 
-  //     return {
-  //       ...state,
-  //       projectList: newArr,
-  //     };
-  //   }
+    return macroCount;
+
+  }
   return state;
 };
 
@@ -78,10 +68,18 @@ const RecipesContextProvider = ({ children }) => {
     });
   };
 
+  const returnMacro = (recipe) => {
+    recipesDispatch({
+      type: "RETURN_MACRO",
+      payload: recipe
+    });
+  };
+
   const ctxValue = {
     recipes: recipesState.recipes,
     recipeAdd: addRecipe,
     recipeDelete: deleteRecipe,
+    returnMacro: returnMacro,
   };
 
   return (

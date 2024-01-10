@@ -7,7 +7,7 @@ import React, {
 
 const moment = require('moment');
 
-const MealPlanForm = forwardRef(({children}, ref) => {
+const CreatePlanForm = forwardRef(({children}, ref) => {
   const planDurationRef = useRef();
   const dateRef = useRef();
   const [error, setError] = useState();
@@ -59,4 +59,4 @@ const MealPlanForm = forwardRef(({children}, ref) => {
   );
 });
 
-export default MealPlanForm;
+export default CreatePlanForm;
