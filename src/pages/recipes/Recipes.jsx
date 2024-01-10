@@ -27,7 +27,7 @@ const Recipes = () => {
       ) : (
         ""
       )}
-      <RecipesList className="flex gap-4 " cardStyle=" w-1/3 bg-white rounded-lg"/>
+      <RecipesList className="flex gap-4 " cardStyle=" w-1/4 bg-white rounded-lg flex flex-col justify-between"/>
     </section>
   );
 };

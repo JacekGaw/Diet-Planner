@@ -32,6 +32,7 @@ const CreatePlanTemplate = ({ template }) => {
       } else return prevItem;
     });
     setRecipesInPlan(newArr);
+    modalRef.current.close();
   };
 
   const onSavePlan = () => {

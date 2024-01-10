@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 
 import { RecipesContext } from "../../store/recipes-context";
 
-const MealsInPlanList = ({ recipesInPlan, dayIndex, onDeleteRecipe,children }) => {
+const MealsInPlanList = ({ recipesInPlan, dayIndex, onDeleteRecipe, children }) => {
   const { recipes } = useContext(RecipesContext);
   const [mouseOver, setMouseOver] = useState(false);
 
