@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
-import Modal from "../../components/UI/Modal";
-import MealPlanForm from "./MealPlanForm";
-import MealPlanTemplate from "./MealPlanTemplate";
+import CreatePlanForm from "./CreatePlanForm";
+import CreatePlanTemplate from "./CreatePlanTemplate";
 
-const MealPlan = () => {
+const CreatePlan = () => {
   const planFormRef = useRef();
   const [mealPlanFormVisibility, setMealPlanFormVisibility] = useState(true);
   const [planTemplate, setPlanTemplate] = useState();
@@ -37,16 +36,16 @@ const MealPlan = () => {
       </header>
       <form className="">
         {mealPlanFormVisibility ? (
-          <MealPlanForm ref={planFormRef}>
+          <CreatePlanForm ref={planFormRef}>
             <button onClick={handleCreate}>Create</button>
-          </MealPlanForm>
+          </CreatePlanForm>
         ) : (
           <button onClick={handleCancel}>Cancel</button>
         )}
       </form>
-      {planTemplate ? <MealPlanTemplate template={planTemplate} /> : ""}
+      {planTemplate ? <CreatePlanTemplate template={planTemplate} /> : ""}
     </section>
   );
 };
 
-export default MealPlan;
+export default CreatePlan;

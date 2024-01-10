@@ -1,10 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import AddRecipe from "./AddRecipe";
-import { RecipesContext } from "../../store/recipes-context";
 import RecipesList from "./RecipesList";
 
 const Recipes = () => {
-  const { recipes } = useContext(RecipesContext);
   const [addRecipeView, setAddRecipeView] = useState(false);
   const handleChangeVisibility = () => {
     setAddRecipeView((prevState) => {
