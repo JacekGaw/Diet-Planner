@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RecipesContextProvider from "./store/recipes-context.jsx";
 import CreatePlan from './pages/create-plan/CreatePlan.jsx'
 import MealPlanContextProvider from "./store/meal-plan-context.jsx";
+import YourPlans from "./pages/your-plans/YourPlans.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Recipes" element={<Recipes />} />
             <Route path="/create-plan" element={<CreatePlan />} />
+            <Route path="/your-plans" element={<YourPlans />}/>
           </Routes>
         </main>
       </section>
