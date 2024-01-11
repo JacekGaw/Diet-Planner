@@ -37,7 +37,7 @@ const AddRecipeIngredients = forwardRef((props, ref) => {
         {
           id: Math.random(),
           ingredient: ingredient,
-          amount: amount,
+          amount: parseInt(amount),
           unit: unit,
         },
       ];

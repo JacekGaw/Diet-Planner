@@ -32,10 +32,10 @@ const AddRecipe = ({ visibility }) => {
         title: titleRef.current.value,
         category: categoryRef.current.value,
         description: descRef.current.value,
-        proteins: proteinRef.current.value,
-        fats: fatsRef.current.value,
-        carbohydrates: carbRef.current.value,
-        calories: caloriesRef.current.value,
+        proteins: parseInt(proteinRef.current.value),
+        fats: parseInt(fatsRef.current.value),
+        carbohydrates: parseInt(carbRef.current.value),
+        calories: parseInt(caloriesRef.current.value),
         ingredients: ingredientsRef.current.getIngredients()
       });
       visibility(false);     

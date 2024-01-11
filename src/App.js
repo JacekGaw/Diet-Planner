@@ -13,7 +13,7 @@ function App() {
       <MealPlanContextProvider>
       <section>
         <Menu />
-        <main className="bg-gradient-to-br from-slate-50 p-10 to-slate-100 min-h-screen">
+        <main className="bg-gradient-to-br from-slate-50 p-10 to-slate-100 min-h-screen z-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Recipes" element={<Recipes />} />
