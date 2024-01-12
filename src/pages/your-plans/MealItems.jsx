@@ -11,7 +11,7 @@ const MealItems = ({ mealsIDs }) => {
           const meal = recipes.filter((recipe) => recipe.id === mealID)[0];
           return <li className="border-b-2 border-slate-300 p-2" key={index}>
             <header>
-                <h5 className="text-center font-medium">{meal.title}</h5>
+                <h5>{meal.title}</h5>
             </header>
             <div className="flex justify-center text-xs text-slate-500">
                 <p className="px-1 capitalize">{meal.category},</p>

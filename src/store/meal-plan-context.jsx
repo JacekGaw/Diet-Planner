@@ -4,7 +4,6 @@ import { SAMPLE_PLAN } from "../SAMPLE_PLAN";
 export const MealPlanContext = createContext({
   plans: [],
   addMealPlan: () => {},
-  deleteMealPlan: () => {},
 });
 
 const convertDate = (givenDate) => {
@@ -17,6 +16,7 @@ const convertDate = (givenDate) => {
 
 const mealPlanReducer = (state, action) => {
   if (action.type === "ADD_MEALPLAN") {
+    console.log(action.payload.plan);
     const newArr = [
       ...state.plans,
       {
@@ -32,13 +32,6 @@ const mealPlanReducer = (state, action) => {
       plans: newArr,
     };
   }
-  else if(action.type === "DELETE_MEALPLAN"){
-    const newArr = state.plans.filter(plan => plan.id !== action.payload)
-    return {
-      ...state,
-      plans: newArr,
-    }
-  }
 
   return state;
 };
@@ -49,6 +42,7 @@ const MealPlanContextProvider = ({ children }) => {
   });
 
   const addMealPlan = (plan, title, start_date) => {
+    console.log(plan);
     mealPlanDispatch({
       type: "ADD_MEALPLAN",
       payload: {
@@ -59,17 +53,9 @@ const MealPlanContextProvider = ({ children }) => {
     });
   };
 
-  const deleteMealPlan = (planID) => {
-    mealPlanDispatch({
-      type: "DELETE_MEALPLAN",
-      payload: planID
-    })
-  }
-
   const ctxValue = {
     plans: mealPlanState.plans,
     addMealPlan: addMealPlan,
-    deleteMealPlan: deleteMealPlan,
   };
 
   return (
