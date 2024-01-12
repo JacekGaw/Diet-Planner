@@ -17,6 +17,7 @@ const CreatePlanTemplate = ({ template }) => {
   const titleRef = useRef();
   const { recipes } = useContext(RecipesContext);
   const { plans, addMealPlan } = useContext(MealPlanContext);
+  console.log(template);
 
   const handleClickOnAddRecipe = (index) => {
     modalRef.current.open();

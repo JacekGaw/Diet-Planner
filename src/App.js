@@ -7,6 +7,7 @@ import RecipesContextProvider from "./store/recipes-context.jsx";
 import CreatePlan from './pages/create-plan/CreatePlan.jsx'
 import MealPlanContextProvider from "./store/meal-plan-context.jsx";
 import YourPlans from "./pages/your-plans/YourPlans.jsx";
+import PlanView from "./pages/your-plans/PlanView.jsx";
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
         <Menu />
         <main className="bg-gradient-to-br from-slate-50 p-10 to-slate-100 min-h-screen z-10">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route exact path="/" element={<Home />} />
             <Route path="/Recipes" element={<Recipes />} />
             <Route path="/create-plan" element={<CreatePlan />} />
             <Route path="/your-plans" element={<YourPlans />}/>
+            <Route path='/your-plans/:planIDparam' element={<PlanView />} />
           </Routes>
         </main>
       </section>

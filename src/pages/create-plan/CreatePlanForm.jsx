@@ -17,6 +17,7 @@ const CreatePlanForm = forwardRef(({children}, ref) => {
     () => {
       return {
         getPlanInfo() {
+          console.log(dateRef.current.value);
           if (moment(dateRef.current.value).isSameOrAfter(moment().startOf('day'))) {
             setError('');
             return {
