@@ -7,8 +7,8 @@ const PlansList = () => {
 
     return ( 
         <ul>
-            {plans.map(plan => {
-                return <PlanListItem key={plan.id} planInfo={plan} />
+            {plans.map((plan, index) => {
+                return <li key={index}><PlanListItem planInfo={plan} /></li>
             })}
         </ul>
     );

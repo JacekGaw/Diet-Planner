@@ -14,8 +14,9 @@ const CreatePlanTemplate = ({ template }) => {
   const [recipesInPlan, setRecipesInPlan] = useState(daysArray);
   const [currentDay, setCurrentDay] = useState();
   const modalRef = useRef();
+  const titleRef = useRef();
   const { recipes } = useContext(RecipesContext);
-  const { addMealPlan } = useContext(MealPlanContext);
+  const { plans, addMealPlan } = useContext(MealPlanContext);
 
   const handleClickOnAddRecipe = (index) => {
     modalRef.current.open();
@@ -36,7 +37,7 @@ const CreatePlanTemplate = ({ template }) => {
   };
 
   const onSavePlan = () => {
-    addMealPlan(recipesInPlan);
+    addMealPlan(recipesInPlan, titleRef.current.value);
     console.log(recipesInPlan);
   };
 
@@ -70,6 +71,8 @@ const CreatePlanTemplate = ({ template }) => {
           })}
         </ul>
       </Modal>
+      <label>Plan Title:</label>
+      <input ref={titleRef} type="text" />
       <div className="p-5 flex w-full overflow-x-auto">
         {recipesInPlan.map((day, index) => {
           return (
@@ -97,6 +100,7 @@ const CreatePlanTemplate = ({ template }) => {
         })}
       </div>
       <button onClick={onSavePlan}>Save Plan</button>
+      <button onClick={() => console.log(plans)}>Show Plan</button>
     </>
   );
 };

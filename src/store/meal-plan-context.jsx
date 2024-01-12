@@ -8,11 +8,17 @@ export const MealPlanContext = createContext({
 
 const mealPlanReducer = (state, action) => {
     if(action.type === 'ADD_MEALPLAN'){
+        const now = new Date();
+        const day = now.getDate();
+        const month = now.getMonth()+1;
+        const year = now.getFullYear();
         const newArr = [
             ...state.plans,
             {
                 id: Math.random(),
-                planConfig: action.payload
+                date_created: `${day}.${month}.${year}`,
+                title: action.payload.title,
+                days: action.payload.plan
             }
         ];
         return {
@@ -30,11 +36,14 @@ const MealPlanContextProvider = ({children}) => {
         plans: [...SAMPLE_PLAN],
     });
 
-    const addMealPlan = (plan) => {
+    const addMealPlan = (plan, title) => {
         console.log(plan);
         mealPlanDispatch({
             type: 'ADD_MEALPLAN',
-            payload: plan
+            payload: {
+                plan,
+                title,
+            }
         })
     }
 

@@ -45,7 +45,7 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
       <header className="w-full bg-dark-green text-white p-2 text-center">
         <h4 className="text-xl font-semibold">Day: {index + 1}</h4>
         <h6 className="text-sm font-light">
-          {dateOjb.day}-{dateOjb.month}-{dateOjb.year}
+          {dateOjb.day}.{dateOjb.month}.{dateOjb.year}
         </h6>
       </header>
       <div className="p-1 px-5 flex justify-center gap-2 text-xs font-light">
