@@ -3,6 +3,7 @@ import { RecipesContext } from "../../store/recipes-context";
 
 const PlanDayCard = ({ index, date, dayInfo, children }) => {
   const { recipes } = useContext(RecipesContext);
+  console.log("jestem");
 
   let helperDate = new Date();
   helperDate = helperDate.setDate(date.getDate() + index);

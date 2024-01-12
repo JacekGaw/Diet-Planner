@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import PlansList from "./PlansList";
+import PlanView from "./PlanView";
 
 const YourPlans = () => {
+  const [clickedID, setClickedID] = useState();
+
+  const handlePlanClick = (planID) => {
+    setClickedID(planID);
+  }
+
+  const handleBackClick = () => {
+    setClickedID(undefined);
+    }
+
   return (
     <section>
       <header className="w-full relative p-2 z-50">
@@ -12,8 +23,9 @@ const YourPlans = () => {
           event_note
         </span>
       </header>
-      <section className="mt-10">
-        <PlansList />
+      <section className="mt-10 w-full align-center">
+        {!clickedID ? <PlansList onPlanClick={handlePlanClick} /> : <PlanView planID={clickedID}/>}
+        
       </section>
     </section>
   );

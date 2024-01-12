@@ -8,7 +8,7 @@ const Menu = () => {
         <div className="flex items-end">
           <NavLink to="/">
             <h2 className="group p-5 text-2xl text-white hover:drop-shadow-md font-bold flex items-center">
-              <p class="material-symbols-outlined text-2xl mr-1 group-hover:rotate-6 group-hover:scale-110 transition-all duration-200">
+              <p className="material-symbols-outlined text-2xl mr-1 group-hover:rotate-6 group-hover:scale-110 transition-all duration-200">
                 lunch_dining
               </p>
               <div className="group-hover:translate-x-1 transition-all duration-200">Diet Planner</div>

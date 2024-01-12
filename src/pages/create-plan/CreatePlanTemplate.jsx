@@ -37,7 +37,7 @@ const CreatePlanTemplate = ({ template }) => {
   };
 
   const onSavePlan = () => {
-    addMealPlan(recipesInPlan, titleRef.current.value);
+    addMealPlan(recipesInPlan, titleRef.current.value, template.startDate);
     console.log(recipesInPlan);
   };
 

@@ -1,20 +1,23 @@
-import React from 'react';
+import React from "react";
 
-const PlanListItem = ({planInfo}) => {
+const PlanListItem = ({ planInfo }) => {
+  return (
+    <div className="group flex justify-between items-center w-full p-5 my-2 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 hover:cursor-pointer">
+      <div>
+        <header>
+          <h3 className="text-xl font-bold">{planInfo.title ? planInfo.title : `Plan Created on ${planInfo.date_created}`}</h3>
+        </header>
+        <p className="text-sm text-slate-500">
+          Date Created: {planInfo.date_created}, Starting Date: {planInfo.start_date}, Duration: {planInfo.days.length}
+        </p>
+      </div>
+      <div className="flex">
+        <span className="material-symbols-outlined group-hover:translate-x-2 transition-translate duration-200">
+          trending_flat
+        </span>
+      </div>
+    </div>
+  );
+};
 
-    console.log(planInfo);
-
-    return ( 
-        <div className='flex justify-between w-full p-2'>
-            <div>
-                <header>
-                    <h3>{planInfo.title}</h3>
-                </header>
-                <p>Date: {planInfo.date_created}, duration: {planInfo.days.length}</p>
-            </div>
-            <div></div>
-        </div>
-    );
-}
- 
 export default PlanListItem;
