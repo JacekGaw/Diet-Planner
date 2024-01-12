@@ -9,9 +9,6 @@ const YourPlans = () => {
     setClickedID(planID);
   }
 
-  const handleBackClick = () => {
-    setClickedID(undefined);
-    }
 
   return (
     <section>

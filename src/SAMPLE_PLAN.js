@@ -31,7 +31,7 @@ export const SAMPLE_PLAN = [
       },
       {
         id: 6,
-        recipesIDs: [0.19191723944889527, 0.7899567626143982],
+        recipesIDs: [],
       },
     ],
   },

@@ -3,7 +3,6 @@ import { RecipesContext } from "../../store/recipes-context";
 
 const PlanDayCard = ({ index, date, dayInfo, children }) => {
   const { recipes } = useContext(RecipesContext);
-  console.log(dayInfo);
   let helperDate = new Date();
   helperDate = helperDate.setDate(date.getDate() + index);
 
@@ -36,8 +35,7 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
         }
       });
       return givenMacro;
-    }
-    else return 0;
+    } else return 0;
   };
 
   return (
@@ -49,12 +47,14 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
         </h6>
       </header>
       <div className="p-1 px-5 flex justify-center gap-2 text-xs font-light">
-        <p>P:{getMacro("proteins")}</p>
-        <p>F:{getMacro("fats")}</p>
-        <p>C:{getMacro("carbohydrates")}</p>
+        <p>P:{getMacro("proteins")}g</p>
+        <p>F:{getMacro("fats")}g</p>
+        <p>C:{getMacro("carbohydrates")}g</p>
         <p>{getMacro("calories")}kcal</p>
       </div>
-      <p className="text-center text-xs font-light pb-1">{dayInfo.length} meals</p>
+      <p className="text-center text-xs font-light pb-1">
+        {dayInfo.length} meals
+      </p>
       <div className="min-h-64 bg-white">{children}</div>
     </div>
   );
