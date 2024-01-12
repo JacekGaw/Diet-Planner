@@ -52,7 +52,7 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
         <p>C:{getMacro("carbohydrates")}g</p>
         <p>{getMacro("calories")}kcal</p>
       </div>
-      <p className="text-center text-xs font-light pb-1">
+      <p className="text-center text-xs font-light pb-1 border-b-2">
         {dayInfo.length} meals
       </p>
       <div className="min-h-64 bg-white">{children}</div>
