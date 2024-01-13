@@ -22,7 +22,7 @@ const PlanView = () => {
   };
   const handleDelete = () => {
     deleteMealPlan(plan.id);
-    return navigate("/your-plans");
+    return navigate("/your-plans", {replace: true});
   };
 
   return (

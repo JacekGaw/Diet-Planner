@@ -8,6 +8,7 @@ import CreatePlan from "./pages/create-plan/CreatePlan.jsx";
 import MealPlanContextProvider from "./store/meal-plan-context.jsx";
 import YourPlans from "./pages/your-plans/YourPlans.jsx";
 import PlanView from "./pages/your-plans/PlanView.jsx";
+import RouteError from "./components/RouteError.jsx";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Menu />
           <main className="bg-gradient-to-br from-slate-50 p-10 to-slate-100 min-h-screen z-10">
             <Routes>
-              <Route path="*" />
+              <Route path="*" element={<RouteError />}/>
               <Route exact path="/" element={<Home />} />
               <Route path="/Recipes" element={<Recipes />} />
               <Route path="/create-plan" element={<CreatePlan />} />
