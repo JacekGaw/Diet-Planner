@@ -18,11 +18,12 @@ const convertDate = (givenDate) => {
 const mealPlanReducer = (state, action) => {
   if (action.type === "ADD_MEALPLAN") {
     console.log(action.payload.plan);
+    const now = new Date();
     const newArr = [
       ...state.plans,
       {
         id: Math.random(),
-        date_created: convertDate(new Date()),
+        date_created: now,
         start_date: new Date(action.payload.start_date),
         title: action.payload.title,
         days: action.payload.plan,
