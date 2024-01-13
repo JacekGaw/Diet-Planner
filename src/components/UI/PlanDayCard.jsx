@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { RecipesContext } from "../../store/recipes-context";
 
 const PlanDayCard = ({ index, date, dayInfo, children }) => {
@@ -33,6 +33,7 @@ const PlanDayCard = ({ index, date, dayInfo, children }) => {
             (recipe) => recipe.id === recipeID
           )[0].calories);
         }
+        return null;
       });
       return givenMacro;
     } else return 0;
