@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MealPlanContext } from "../../store/meal-plan-context";
+import { RecipesContext } from "../../store/recipes-context.jsx";
 import PlanDayCard from "../../components/UI/PlanDayCard.jsx";
 import { useParams } from "react-router-dom";
 import MealItems from "./MealItems.jsx";
@@ -7,14 +8,16 @@ import Button from "../../components/UI/Button.jsx";
 import Modal from "../../components/UI/Modal.jsx";
 import { useNavigate } from "react-router-dom";
 import RouteError from "../../components/RouteError.jsx";
-// import {useGenerateShoppingList} from "../../hooks/useGenerateShoppingList.js"
+import {generateShoppingList} from "../../hooks/useGenerateShoppingList.js"
 
 const PlanView = () => {
   let navigate = useNavigate();
   const { plans, deleteMealPlan } = useContext(MealPlanContext);
+  const {recipes} = useContext(RecipesContext);
   const modalRef = useRef();
   const [list, setList] = useState();
   const { planIDparam } = useParams();
+  const [shoppingList, setShoppingList] = useState();
   const plan = plans.filter(
     (plan) => plan.id.toString() === planIDparam.toString()
   )[0];
@@ -31,13 +34,10 @@ const PlanView = () => {
     navigate("/your-plans");
   }
 
-  //   useEffect(() => {
-  //     const respo = useGenerateShoppingList(list);
-  //     console.log(respo);
-  //   }, [list])
-
   const handleShoppingListClick = (planID) => {
-    setList(planID);
+    const ing = generateShoppingList(planID, plans, recipes);
+    console.log(ing);
+
   };
   return (
     <div>
