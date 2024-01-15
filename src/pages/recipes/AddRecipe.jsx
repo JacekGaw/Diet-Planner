@@ -3,8 +3,9 @@ import Input from "../../components/UI/Input";
 import Modal from "../../components/UI/Modal";
 import { RecipesContext } from "../../store/recipes-context";
 import AddRecipeIngredients from "./AddRecipeIngredients";
+import Button from "../../components/UI/Button";
 
-const AddRecipe = ({ visibility }) => {
+const AddRecipe = () => {
   const { recipeAdd } = useContext(RecipesContext);
   const modal = useRef();
   const titleRef = useRef();
@@ -14,18 +15,19 @@ const AddRecipe = ({ visibility }) => {
   const fatsRef = useRef();
   const carbRef = useRef();
   const caloriesRef = useRef();
-  const [modalInfo, setModalInfo] = useState();
+  const [errorMessage, setErrorMessage] = useState();
   const ingredientsRef = useRef();
 
   const handleSave = () => {
+    console.log(titleRef.current.value === '');
     if (
-      titleRef.current.value.trim() === 0 ||
-      proteinRef.current.value.trim() === 0 ||
-      fatsRef.current.value.trim() === 0 ||
-      carbRef.current.value.trim() === 0 ||
-      caloriesRef.current.value.trim() === 0
+      titleRef.current.value.trim() === '' ||
+      proteinRef.current.value.trim() === '' ||
+      fatsRef.current.value.trim() === '' ||
+      carbRef.current.value.trim() === '' ||
+      caloriesRef.current.value.trim() === ''
     ) {
-      setModalInfo(<p>"Fields cannot be empty!"</p>);
+      setErrorMessage(<p className="mb-5 text-red-700">"Fields cannot be empty!"</p>);
       modal.current.open();
     } else {
       recipeAdd({
@@ -37,68 +39,66 @@ const AddRecipe = ({ visibility }) => {
         carbohydrates: parseInt(carbRef.current.value),
         calories: parseInt(caloriesRef.current.value),
         ingredients: ingredientsRef.current.getIngredients()
-      });
-      visibility(false);     
+      });    
     }
   };
 
   return (
     <>
-      <Modal ref={modal}>{modalInfo}</Modal>
-      <section className="mb-5 bg-dark-green rounded-lg p-5">
+      <Modal ref={modal}>{errorMessage}</Modal>
+      <section className="mb-5 rounded-lg p-5">
         <header>
-          <h3 className="text-center text-white">Add recipe to your recipe book:</h3>
+          <h3 className="text-center text-xl mb-5">Add recipe to your recipe book:</h3>
         </header>
         <form
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="mx-5 bg-slate-200 rounded-md p-5 "
+          className="mx-5 rounded-md p-5 flex flex-col border-2 border-slate-300"
         >
-          <div>
             <Input
               label="Recipe title:"
               inputType="text"
               ref={titleRef}
-              labelClass="text-white mr-2"
-              inputClass="w-fit rounded-md p-1"
+              labelClass="text-sm"
+              inputClass="border-b-2 border-b-dark-green p-1 rounded-sm"
+              placeholder="Recipe title"
             />
-            <label className="text-white m-2">Recipe category:</label>
-            <select ref={categoryRef} className="w-fit p-1 rounded-md">
+            <label className="text-sm mt-2">Recipe category:</label>
+            <select ref={categoryRef} className="border-b-2 border-b-dark-green rounded-sm py-1 mb-2">
               <option value="sweet">Sweet</option>
               <option value="snack">Snack</option>
               <option value="main">Main Dish</option>
             </select>
-          </div>
-          <label className="text-white mr-2">Recipe description:</label>
+          <label className="text-sm">Recipe description:</label>
           <textarea
-            className="whitespace-pre-line w-fit"
+            className="whitespace-pre-line border-2 border-dark-green rounded-sm"
             ref={descRef}
           ></textarea>
-          <div>
+          <div className="flex w-full justify-between gap-4 mt-2">
             <Input
               label="Proteins:"
               inputType="number"
               ref={proteinRef}
               min="0"
-              inputClass="w-fit"
-              labelClass="text-white mr-2"
+              inputClass="max-w-[100px] border-b-2 border-b-dark-green p-1 rounded-sm"
+              labelClass="text-sm"
             />
             <Input
               label="Fats:"
               inputType="number"
               ref={fatsRef}
               min="0"
-              inputClass="w-fit"
-              labelClass="text-white mx-2"
+              inputClass="max-w-[100px] border-b-2 border-b-dark-green p-1 rounded-sm"
+              labelClass="text-sm"
             />
             <Input
               label="Carbohydrates:"
               inputType="number"
               ref={carbRef}
               min="0"
-              inputClass="w-fit"
-              labelClass="text-white mx-2"
+              inputClass="max-w-[100px] border-b-2 border-b-dark-green p-1 rounded-sm"
+              labelClass="text-sm"
             />
           </div>
           <Input
@@ -106,13 +106,13 @@ const AddRecipe = ({ visibility }) => {
             inputType="number"
             ref={caloriesRef}
             min="0"
-            inputClass="w-fit"
-            labelClass="text-white mr-2"
+            inputClass="max-w-[100px] border-b-2 border-b-dark-green p-1 rounded-sm"
+            labelClass="text-sm mt-2"
           />
           <AddRecipeIngredients ref={ingredientsRef} />
-          <button type="submit" onClick={handleSave}>
+          <Button type="submit" onClick={handleSave}>
             Done
-          </button>
+          </Button>
         </form>
       </section>
     </>

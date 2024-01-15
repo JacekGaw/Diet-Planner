@@ -1,7 +1,7 @@
 import React, {forwardRef, useImperativeHandle, useRef} from 'react';
 import {createPortal} from 'react-dom';
 
-const Modal = forwardRef(function Modal({className, children}, ref){
+const Modal = forwardRef(function Modal({className, children, onClose}, ref){
     const dialog = useRef();
     const button = useRef();
     useImperativeHandle(ref, () => {
@@ -11,6 +11,7 @@ const Modal = forwardRef(function Modal({className, children}, ref){
             },
             close() {
                 button.current.click();
+                
             }
         };
     });
