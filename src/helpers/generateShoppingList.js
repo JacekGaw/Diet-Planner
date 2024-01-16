@@ -27,8 +27,6 @@ export const generateShoppingList = (planID, plans, recipes) => {
         find ? (find.value += item.value ) : obj.push(_d);
         return obj;
       }, [])
-      
-    console.log(helper);
     return helper;
 };
  
