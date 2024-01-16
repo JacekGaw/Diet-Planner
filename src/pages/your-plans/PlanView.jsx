@@ -9,6 +9,7 @@ import Modal from "../../components/UI/Modal.jsx";
 import { useNavigate } from "react-router-dom";
 import RouteError from "../../components/RouteError.jsx";
 import { generateShoppingList } from "../../helpers/generateShoppingList.js";
+import { generateFile } from "../../helpers/generateFile.js";
 
 const PlanView = () => {
   let navigate = useNavigate();
@@ -67,7 +68,7 @@ const PlanView = () => {
           })}
         </ul>
         <Button
-          onClick={handleDownloadRecipe}
+          onClick={() => handleDownloadRecipe(shoppingList)}
           className="group border border-slate-400 rounded-sm bg-slate-100 text-black hover:border-black hover:shadow-md transition-all duration-200"
         >
           <p className="material-symbols-outlined flex group-hover:translate-y-[2px] transition-translate duration-200">download</p>
@@ -77,7 +78,10 @@ const PlanView = () => {
     modalRef.current.open();
   };
 
-  const handleDownloadRecipe = () => {};
+  const handleDownloadRecipe = (shoppingList) => {
+    generateFile(shoppingList, plan);
+  };
+
 
   return (
     <div>

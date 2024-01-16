@@ -1,5 +1,3 @@
-
-
 export const generateShoppingList = (planID, plans, recipes) => {
     let planRecipesIDs = [];
     const mealPlan = plans.filter(plan => plan.id === planID)[0];
