@@ -5,7 +5,7 @@ import { RecipesContext } from "../../store/recipes-context";
 import AddRecipeIngredients from "./AddRecipeIngredients";
 import Button from "../../components/UI/Button";
 
-const AddRecipe = () => {
+const AddRecipe = ({onClose}) => {
   const { recipeAdd } = useContext(RecipesContext);
   const modal = useRef();
   const titleRef = useRef();
@@ -19,7 +19,6 @@ const AddRecipe = () => {
   const ingredientsRef = useRef();
 
   const handleSave = () => {
-    console.log(titleRef.current.value === '');
     if (
       titleRef.current.value.trim() === '' ||
       proteinRef.current.value.trim() === '' ||
@@ -30,6 +29,7 @@ const AddRecipe = () => {
       setErrorMessage(<p className="mb-5 text-red-700">"Fields cannot be empty!"</p>);
       modal.current.open();
     } else {
+      onClose();
       recipeAdd({
         title: titleRef.current.value,
         category: categoryRef.current.value,
@@ -38,8 +38,15 @@ const AddRecipe = () => {
         fats: parseInt(fatsRef.current.value),
         carbohydrates: parseInt(carbRef.current.value),
         calories: parseInt(caloriesRef.current.value),
-        ingredients: ingredientsRef.current.getIngredients()
-      });    
+        ingredients: ingredientsRef.current.getIngredients() 
+      })
+      titleRef.current.value = '';
+      descRef.current.value = '';
+      proteinRef.current.value = '';
+      fatsRef.current.value = '';
+      carbRef.current.value = '';
+      caloriesRef.current.value = '';
+      ingredientsRef.current.clearInputs();
     }
   };
 

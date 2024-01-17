@@ -19,6 +19,10 @@ const AddRecipeIngredients = forwardRef((props, ref) => {
         getIngredients() {
           return [...ingredients];
         },
+        clearInputs() {
+          ingredientRef.current.value = "";
+          amountRef.current.value = "";
+        },
       };
     },
     [ingredients]

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import AddRecipe from "./AddRecipe";
 import RecipesList from "./RecipesList";
 import Modal from "../../components/UI/Modal";
+import Button from "../../components/UI/Button";
 
 const Recipes = () => {
   const modalRef = useRef();
@@ -10,13 +11,17 @@ const Recipes = () => {
     modalRef.current.open();
   };
 
+  const handleCloseModal = () => {
+    modalRef.current.close();
+  }
+
 
   return (
     <>
       <Modal ref={modalRef}>
-        <AddRecipe />
+        <AddRecipe onClose={handleCloseModal} />
       </Modal>
-      <section className=" z-0 flex flex-col ">
+      <section className=" z-0 flex flex-col items-center">
         <header className="w-full relative p-2 z-50 ">
           <h2 className="text-center text-4xl font-regular z-50 drop-shadow-md">
             Recipe Book
@@ -25,18 +30,20 @@ const Recipes = () => {
             menu_book
           </span>
         </header>
-        <div className="max-w-[500px]">
-          <button
+        <div className="w-fulll flex  justify-end">
+
+          <Button
             onClick={handleChangeVisibility}
-            className="bg-dark-green text-white rounded p-2 text-sm mb-5"
+            className="bg-dark-green text-white font-light rounded p-2 text-xs my-5"
           >
             Add recipe
-          </button>
+          </Button>
+          
         </div>
         <div className="flex w-full justify-center">
         <RecipesList
           className="flex flex-wrap z-50 max-w-screen-xl"
-          cardStyle="z-50 w-[23%] m-[1%] bg-white rounded-xl flex flex-col justify-between border-2 border-dark-green"
+          cardStyle="z-50 w-[100%] sm:w-[48%] md:w-[31.3%] xl:w-[23%] m-[1%] bg-white rounded-xl flex flex-col justify-between border-2 border-dark-green shadow-sm"
         />
         </div>
       </section>

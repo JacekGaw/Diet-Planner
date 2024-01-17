@@ -11,7 +11,6 @@ const Modal = forwardRef(function Modal({className, children, onClose}, ref){
             },
             close() {
                 button.current.click();
-                
             }
         };
     });
