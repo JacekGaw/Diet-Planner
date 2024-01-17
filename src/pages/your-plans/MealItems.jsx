@@ -39,7 +39,7 @@ const MealItems = ({ mealsIDs }) => {
                 <p className="px-1"> {meal.calories}kcal</p>
               </div>
               <button className="p-1 absolute invisible right-0 bottom-0 bg-white text-black group-hover:visible" onClick={() => handleMoreInfo(meal)}>
-                <span class="material-symbols-outlined">info</span>
+                <span className="material-symbols-outlined">info</span>
               </button>
             </li>
           );

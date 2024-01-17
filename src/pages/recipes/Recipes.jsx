@@ -22,8 +22,8 @@ const Recipes = () => {
         <AddRecipe onClose={handleCloseModal} />
       </Modal>
       <section className=" z-0 flex flex-col items-center">
-        <header className="w-full relative p-2 z-50 ">
-          <h2 className="text-center text-4xl font-regular z-50 drop-shadow-md">
+        <header className="w-full relative p-2 z-30 ">
+          <h2 className="text-center text-4xl font-regular z-30 drop-shadow-md">
             Recipe Book
           </h2>
           <span className="material-symbols-outlined text-[80px] left-[55%] top-0 m-0 p-0 absolute opacity-10 z-0 ">
