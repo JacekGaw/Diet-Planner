@@ -1,3 +1,5 @@
+import { moment } from "moment/moment";
+
 export const generateFile = (shoppingList, plan) => {
     let listString = "";
     shoppingList.map((listItem, index) => {
@@ -9,7 +11,7 @@ export const generateFile = (shoppingList, plan) => {
   const template = `Shopping List ${dateCurrent}
 
     For plan: ${plan.title}
-    Created at: ${plan.date_created.toLocaleDateString('de-DE')}
+    Created at: ${new Date(plan.date_created).toLocaleDateString('de-DE')}
         
     Ingredients to buy:
         ${listString}
