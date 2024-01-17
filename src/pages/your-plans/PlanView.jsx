@@ -71,7 +71,7 @@ const PlanView = () => {
           onClick={() => handleDownloadRecipe(shoppingList)}
           className="group border border-slate-400 rounded-sm bg-slate-100 text-black hover:border-black hover:shadow-md transition-all duration-200"
         >
-          <p className="material-symbols-outlined flex group-hover:translate-y-[2px] transition-translate duration-200">download</p>
+          <p className="material-symbols-outlined text-black flex group-hover:translate-y-[2px] transition-translate duration-200">download</p>
         </Button>
       </>
     );

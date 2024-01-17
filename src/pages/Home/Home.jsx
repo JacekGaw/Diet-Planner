@@ -3,10 +3,12 @@ import React from 'react';
 const Home = () => {
 
     return ( 
-        <>
-        <h1>HomePage</h1>
-        <h1>Happy new 2024!</h1>
-        </>
+        <section>
+            <header className='p-5'>
+            <h1 className='font-medium text-6xl'>Meal Planner</h1>
+            </header>
+            
+        </section>
     );
 }
  

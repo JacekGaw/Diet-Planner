@@ -26,7 +26,7 @@ const MealsInPlanList = ({ recipesInPlan, dayIndex, onDeleteRecipe, children }) 
                 key={index}
                 onMouseOver={handleMouseOver}
                 onMouseLeave={handleMouseLeave}
-                className="relative"
+                className="relative group"
               >
                 <header>
                   <h6 className="text-md font-semibol">{recipe.title}</h6>
@@ -44,7 +44,7 @@ const MealsInPlanList = ({ recipesInPlan, dayIndex, onDeleteRecipe, children }) 
                 </p>
                 {mouseOver && (
                   <div className="absolute w-full h-full top-0 left-0">
-                    <button className="absolute top-1/2 left-1/2 -translate-x-1/2" onClick={() => {onDeleteRecipe(dayIndex, index)}}>Delete</button>
+                    <button className="absolute bg-red-800 p-2 shadow-xl top-1/2 left-1/2 text-white -translate-x-[50%] -translate-y-[50%]" onClick={() => {onDeleteRecipe(dayIndex, index)}}>Delete</button>
                   </div>
                 )}
               </li>
@@ -52,7 +52,7 @@ const MealsInPlanList = ({ recipesInPlan, dayIndex, onDeleteRecipe, children }) 
           })}
         </ul>
       ) : (
-        <p>No recipes for this day</p>
+        <p className="p-2">No recipes for this day</p>
       )}
     </div>
   );

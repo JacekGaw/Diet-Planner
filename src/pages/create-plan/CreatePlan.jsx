@@ -29,6 +29,11 @@ const CreatePlan = () => {
     setPlanTemplate();
   };
 
+  const handleCloseAddView = () => {
+    setMealPlanFormVisibility(true);
+    setPlanTemplate(undefined);
+  }
+
   // Plan na dalsze działanie to wyświetlenie template
   return (
     <section>
@@ -44,10 +49,10 @@ edit_square
             <Button onClick={handleCreate}>Create</Button>
           </CreatePlanForm>
         ) : (
-          <button onClick={handleCancel}>Cancel</button>
+          <Button onClick={handleCancel}>Cancel</Button>
         )}
       </form>
-      {planTemplate ? <CreatePlanTemplate template={planTemplate} /> : ""}
+      {planTemplate ? <CreatePlanTemplate template={planTemplate} onClose={handleCloseAddView}/> : ""}
     </section>
   );
 };

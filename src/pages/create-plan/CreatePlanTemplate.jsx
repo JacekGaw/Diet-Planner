@@ -5,8 +5,9 @@ import { RecipesContext } from "../../store/recipes-context";
 import { MealPlanContext } from "../../store/meal-plan-context";
 import RecipeListItem from "./RecipeListItem";
 import MealsInPlanList from "./MealsInPlanList";
+import Button from "../../components/UI/Button";
 
-const CreatePlanTemplate = ({ template }) => {
+const CreatePlanTemplate = ({ template, onClose }) => {
   let daysArray = [];
   for (let i = 0; i < template.duration; i++) {
     daysArray[i] = { id: i, recipesIDs: [] };
@@ -37,9 +38,22 @@ const CreatePlanTemplate = ({ template }) => {
     modalRef.current.close();
   };
 
+  const convertDate = (givenDate) => {
+    const newDate = new Date(givenDate);
+    const day = newDate.getDate();
+    const month = newDate.getMonth() + 1;
+    const year = newDate.getFullYear();
+    return `${day}.${month}.${year}`;
+  };
+
   const onSavePlan = () => {
-    addMealPlan(recipesInPlan, titleRef.current.value, template.startDate);
-    console.log(recipesInPlan);
+    let title = "";
+    if(titleRef.current.value === "") {
+      title = `Plan Created On: ${convertDate(new Date())}`;
+    }
+    else title = titleRef.current.value;
+    addMealPlan(recipesInPlan, title, template.startDate);
+    onClose();
   };
 
   const handleDeleteRecipe = (dayIndex, givenRecipeIndex) => {
@@ -72,8 +86,10 @@ const CreatePlanTemplate = ({ template }) => {
           })}
         </ul>
       </Modal>
-      <label>Plan Title:</label>
-      <input ref={titleRef} type="text" />
+      <div className="flex justify-center items-center">
+        <label className="text-xl mr-2">Plan Title:</label>
+        <input ref={titleRef} type="text" className="p-1 border border-slate-200" />
+      </div>
       <div className="p-5 flex w-full overflow-x-auto">
         {recipesInPlan.map((day, index) => {
           return (
@@ -84,12 +100,12 @@ const CreatePlanTemplate = ({ template }) => {
               dayInfo={recipesInPlan[index].recipesIDs}
             >
               <div className="w-full flex justify-center p-1">
-                <button
+                <Button
                   className="p-2 bg-slate-500 text-white text-sm hover:shadow-lg transition-shadow duration-100"
                   onClick={() => handleClickOnAddRecipe(index)}
                 >
                   Add recipe +
-                </button>
+                </Button>
               </div>
               <MealsInPlanList
                 recipesInPlan={recipesInPlan}
@@ -100,8 +116,7 @@ const CreatePlanTemplate = ({ template }) => {
           );
         })}
       </div>
-      <button onClick={onSavePlan}>Save Plan</button>
-      <button onClick={() => console.log(plans)}>Show Plan</button>
+      <Button className="mt-2" onClick={onSavePlan}>Save Plan</Button>
     </>
   );
 };

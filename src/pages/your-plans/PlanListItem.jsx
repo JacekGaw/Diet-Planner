@@ -15,7 +15,7 @@ const PlanListItem = ({ planInfo }) => {
     <div className="group flex justify-between items-center w-full p-5 my-2 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 hover:cursor-pointer">
       <div>
         <header>
-          <h3 className="text-xl font-bold">{planInfo.title ? planInfo.title : `Plan Created on ${convertDate(planInfo.date_created)}`}</h3>
+          <h3 className="text-xl font-bold">{planInfo.title}</h3>
         </header>
         <p className="text-sm text-slate-500">
           Date Created: {convertDate(planInfo.date_created)}, Starting Date: {convertDate(planInfo.start_date)}, Duration: {planInfo.days.length}

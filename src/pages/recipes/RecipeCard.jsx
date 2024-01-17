@@ -12,7 +12,7 @@ const RecipeCard = ({ recipeInfo, className }) => {
 
   return (
     <>
-      <Modal ref={modalRef} className="max-w-[40%] min-w-[500px]">
+      <Modal ref={modalRef} className="md:max-w-[40%]">
         <header className="w-full">
           <h3 className="font-bold text-3xl">{recipeInfo.title}</h3>
           <p className="capitalize">{recipeInfo.category}</p>

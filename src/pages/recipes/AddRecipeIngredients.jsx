@@ -55,7 +55,7 @@ const AddRecipeIngredients = forwardRef((props, ref) => {
       <h3 className="text-center mt-5 text-md">
         Ingredients ({ingredients.length}):
       </h3>
-      <div className="w-full flex gap-4 justify-between mb-2">
+      <div className="w-full sm:flex  gap-4 justify-between mb-2">
         <div className="flex flex-col">
           <label className="text-sm">Ingredient:</label>
           <input

@@ -82,7 +82,7 @@ const AddRecipe = ({onClose}) => {
             className="whitespace-pre-line border-2 border-dark-green rounded-sm"
             ref={descRef}
           ></textarea>
-          <div className="flex w-full justify-between gap-4 mt-2">
+          <div className="sm:flex  w-full justify-between gap-4 mt-2">
             <Input
               label="Proteins:"
               inputType="number"
