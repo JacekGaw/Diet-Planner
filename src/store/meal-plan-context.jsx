@@ -17,7 +17,6 @@ const convertDate = (givenDate) => {
 
 const mealPlanReducer = (state, action) => {
   if (action.type === "ADD_MEALPLAN") {
-    console.log(action.payload.plan);
     const now = new Date();
     const newArr = [
       ...state.plans,
@@ -33,13 +32,12 @@ const mealPlanReducer = (state, action) => {
       ...state,
       plans: newArr,
     };
-  }
-  else if(action.type === "DELETE_MEALPLAN"){
-    const newArr = state.plans.filter(plan => plan.id !== action.payload)
+  } else if (action.type === "DELETE_MEALPLAN") {
+    const newArr = state.plans.filter((plan) => plan.id !== action.payload);
     return {
       ...state,
       plans: newArr,
-    }
+    };
   }
 
   return state;
@@ -48,7 +46,7 @@ const mealPlanReducer = (state, action) => {
 const getInitialState = () => {
   const plans = localStorage.getItem("plans");
   return plans ? JSON.parse(plans) : [...SAMPLE_PLAN];
-}
+};
 
 const MealPlanContextProvider = ({ children }) => {
   const [mealPlanState, mealPlanDispatch] = useReducer(mealPlanReducer, {
@@ -59,11 +57,7 @@ const MealPlanContextProvider = ({ children }) => {
     localStorage.setItem("plans", JSON.stringify(mealPlanState.plans));
   }, [mealPlanState]);
 
-  console.log(JSON.parse(localStorage.getItem('plans')));
-  console.log(mealPlanState.plans);
-
   const addMealPlan = (plan, title, start_date) => {
-    console.log(plan);
     mealPlanDispatch({
       type: "ADD_MEALPLAN",
       payload: {
@@ -77,9 +71,9 @@ const MealPlanContextProvider = ({ children }) => {
   const deleteMealPlan = (planID) => {
     mealPlanDispatch({
       type: "DELETE_MEALPLAN",
-      payload: planID
-    })
-  }
+      payload: planID,
+    });
+  };
 
   const ctxValue = {
     plans: mealPlanState.plans,

@@ -34,12 +34,12 @@ const CreatePlanForm = forwardRef(({children}, ref) => {
   );
 
   return (
-    <div>
+    <div className="flex flex-col items-center z-50 gap-1">
       <div>
         <label>Create Your meal plan for:</label>
         <select
           ref={planDurationRef}
-          className="mx-2 p-2 border border-slate-700"
+          className="mx-2 p-2 border border-slate-400 rounded-md"
         >
           <option value="day">Day</option>
           <option value="week">Week</option>
@@ -50,11 +50,11 @@ const CreatePlanForm = forwardRef(({children}, ref) => {
         <label>Starting date:</label>
         <input
           type="date"
-          className="p-2 border border-slate-200 mx-2"
+          className="p-2 border border-slate-400 rounded-md mx-2"
           ref={dateRef}
         ></input>
       </div>
-      <p className="text-red-">{error}</p>
+      <p className="text-red-500 my-2">{error}</p>
       {children}
     </div>
   );

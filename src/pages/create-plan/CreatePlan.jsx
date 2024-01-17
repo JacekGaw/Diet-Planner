@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import CreatePlanForm from "./CreatePlanForm";
 import CreatePlanTemplate from "./CreatePlanTemplate";
+import Button from "../../components/UI/Button";
 
 const CreatePlan = () => {
   const planFormRef = useRef();
@@ -31,13 +32,16 @@ const CreatePlan = () => {
   // Plan na dalsze działanie to wyświetlenie template
   return (
     <section>
-      <header>
-        <h2 className="text-center text-3xl p-5">Meal Plan</h2>
+      <header className="p-2 relative mb-10">
+        <h2 className="text-center text-4xl font-regular z-50 drop-shadow-md">Meal Plan</h2>
+        <div className="material-symbols-outlined text-[80px] left-[55%] top-0 m-0 p-0 absolute opacity-10 z-0">
+edit_square
+</div>
       </header>
       <form className="">
         {mealPlanFormVisibility ? (
           <CreatePlanForm ref={planFormRef}>
-            <button onClick={handleCreate}>Create</button>
+            <Button onClick={handleCreate}>Create</Button>
           </CreatePlanForm>
         ) : (
           <button onClick={handleCancel}>Cancel</button>
