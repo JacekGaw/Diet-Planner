@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import { RecipesContext } from "../../store/recipes-context";
 import Modal from "../../components/UI/Modal";
+import { getMealInfo } from "../../helpers/getMealInfo";
 
 const RecipeCard = ({ recipeInfo, className }) => {
   const modalRef = useRef();
@@ -13,28 +14,7 @@ const RecipeCard = ({ recipeInfo, className }) => {
   return (
     <>
       <Modal ref={modalRef} className="md:max-w-[40%]">
-        <header className="w-full">
-          <h3 className="font-bold text-3xl">{recipeInfo.title}</h3>
-          <p className="capitalize">{recipeInfo.category}</p>
-        </header>
-        <div className="flex justify-center p-2 mb-2 text-sm font-semibold bg-light-green">
-          <p className="mx-1">P: {recipeInfo.proteins}</p>
-          <p className="mx-1">F: {recipeInfo.fats}</p>
-          <p className="mx-1">C: {recipeInfo.carbohydrates}</p>
-          <p className="mx-1">Calories: {recipeInfo.calories}</p>
-        </div>
-        <p className="text-sm  py-3 text-justify">
-          <strong>Description: </strong>
-          {recipeInfo.description}
-        </p>
-        <div className="text-sm pb-3">
-            <strong>Ingredients:</strong>
-            <ul>
-                {recipeInfo.ingredients.map(ingredient => {
-                    return <li key={ingredient.id} className="pl-10 my-1 font-semibol">{ingredient.ingredient}: {ingredient.amount}{ingredient.unit}</li>
-                })}
-            </ul>
-        </div>
+        {getMealInfo(recipeInfo)}
       </Modal>
       <li className={className}>
         <div>

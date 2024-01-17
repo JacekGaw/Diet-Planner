@@ -96,7 +96,7 @@ const PlanView = () => {
                 keyboard_backspace
               </span>
             </button>
-            <header className="flex justify-between items-center border-b-2 border-slate-200 py-2">
+            <header className="flex justify-between items-center border-b-2 border-slate-200 pb-1">
               <h2 className="text-3xl font-bold">{plan.title}</h2>
               <div className="flex">
                 <Button
@@ -107,9 +107,9 @@ const PlanView = () => {
                 </Button>
                 <Button
                   onClick={handleClickDelete}
-                  className="mb-0 p-0 text-sm"
+                  className="mb-0 p-0"
                 >
-                  <span className="material-symbols-outlined">delete</span>
+                  Delete
                 </Button>
               </div>
             </header>

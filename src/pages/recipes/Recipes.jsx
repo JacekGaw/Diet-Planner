@@ -43,7 +43,7 @@ const Recipes = () => {
         <div className="flex w-full justify-center">
         <RecipesList
           className="flex flex-wrap z-50 max-w-screen-xl"
-          cardStyle="z-50 w-[100%] sm:w-[48%] md:w-[31.3%] xl:w-[23%] m-[1%] bg-white rounded-xl flex flex-col justify-between border-2 border-dark-green shadow-sm"
+          cardStyle="z-50 w-[100%] sm:w-[48%] md:w-[31.3%] xl:w-[23%] m-[1%] bg-white rounded-xl flex flex-col justify-between "
         />
         </div>
       </section>

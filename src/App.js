@@ -16,7 +16,7 @@ function App() {
       <MealPlanContextProvider>
         <section>
           <Menu />
-          <main className="bg-gradient-to-br from-slate-50 p-10 to-slate-100 min-h-screen z-10">
+          <main className="bg-slate-100 p-10 min-h-screen z-10">
             <Routes>
               <Route path="*" element={<RouteError />}/>
               <Route exact path="/" element={<Home />} />
