@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import { SAMPLE_RECIPES } from "../SAMPLE_RECIPES";
 
 export const RecipesContext = createContext({
@@ -10,7 +10,6 @@ export const RecipesContext = createContext({
 
 const recipesReducer = (state, action) => {
   if (action.type === "ADD_RECIPE") {
-
     const newArr = [
       ...state.recipes,
       {
@@ -23,7 +22,7 @@ const recipesReducer = (state, action) => {
         fats: action.payload.fats,
         carbohydrates: action.payload.carbohydrates,
         calories: action.payload.calories,
-        ingredients: action.payload.ingredients
+        ingredients: action.payload.ingredients,
       },
     ];
     return {
@@ -44,15 +43,29 @@ const recipesReducer = (state, action) => {
     let macroCount = 0;
 
     return macroCount;
-
+  }
+  if (action.type === "LOAD_ITEMS") {
+    return {
+      ...state,
+      recipes: action.payload,
+    };
   }
   return state;
 };
 
+const getState = () => {
+  const recipes = localStorage.getItem("recipes");
+  return recipes ? JSON.parse(recipes) : [...SAMPLE_RECIPES];
+};
+
 const RecipesContextProvider = ({ children }) => {
   const [recipesState, recipesDispatch] = useReducer(recipesReducer, {
-    recipes: [...SAMPLE_RECIPES],
+    recipes: getState(),
   });
+
+  useEffect(() => {
+    localStorage.setItem("recipes", JSON.stringify(recipesState.recipes));
+  }, [recipesState]);
 
   const addRecipe = (recipeInfo) => {
     recipesDispatch({
@@ -71,7 +84,7 @@ const RecipesContextProvider = ({ children }) => {
   const returnMacro = (recipe) => {
     recipesDispatch({
       type: "RETURN_MACRO",
-      payload: recipe
+      payload: recipe,
     });
   };
 

@@ -3,7 +3,8 @@ import { RecipesContext } from "../../store/recipes-context";
 
 const PlanDayCard = ({ index, date, dayInfo, children }) => {
   const { recipes } = useContext(RecipesContext);
-  let helperDate = new Date();
+  date = new Date(Date.parse(date));
+  let helperDate = new Date(date);
   helperDate = helperDate.setDate(date.getDate() + index);
 
   const dateOjb = {

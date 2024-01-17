@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 import { SAMPLE_PLAN } from "../SAMPLE_PLAN";
 
 export const MealPlanContext = createContext({
@@ -45,10 +45,22 @@ const mealPlanReducer = (state, action) => {
   return state;
 };
 
+const getInitialState = () => {
+  const plans = localStorage.getItem("plans");
+  return plans ? JSON.parse(plans) : [...SAMPLE_PLAN];
+}
+
 const MealPlanContextProvider = ({ children }) => {
   const [mealPlanState, mealPlanDispatch] = useReducer(mealPlanReducer, {
-    plans: [...SAMPLE_PLAN],
+    plans: getInitialState(),
   });
+
+  useEffect(() => {
+    localStorage.setItem("plans", JSON.stringify(mealPlanState.plans));
+  }, [mealPlanState]);
+
+  console.log(JSON.parse(localStorage.getItem('plans')));
+  console.log(mealPlanState.plans);
 
   const addMealPlan = (plan, title, start_date) => {
     console.log(plan);
