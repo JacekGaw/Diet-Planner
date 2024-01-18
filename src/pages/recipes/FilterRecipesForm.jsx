@@ -7,7 +7,11 @@ const FilterRecipesForm = () => {
   const sortRef = useRef();
   const categoryRef = useRef();
   const searchRef = useRef();
-  const [searchParams, setSearchParams] = useSearchParams({ sort: "oldest", cat: "all", search: "" });
+  const [searchParams, setSearchParams] = useSearchParams({
+    sort: "oldest",
+    cat: "all",
+    search: "",
+  });
 
   const getUniq = (recipes) => {
     let arr = [...new Set(recipes.map((recipe) => recipe.category))];
@@ -15,12 +19,10 @@ const FilterRecipesForm = () => {
   };
 
   const handleSearch = (e) => {
-    console.log(searchRef.current.value);
-    
-    let sort = {sort: sortRef.current.value}
-    let cat = {cat: categoryRef.current.value}
-    let search = {search: searchRef.current.value}
-    setSearchParams({...search, ...sort, ...cat });
+    let sort = { sort: sortRef.current.value };
+    let cat = { cat: categoryRef.current.value };
+    let search = { search: searchRef.current.value };
+    setSearchParams({ ...search, ...sort, ...cat });
   };
   return (
     <form
