@@ -5,7 +5,7 @@ import { RecipesContext } from "../../store/recipes-context";
 import AddRecipeIngredients from "./AddRecipeIngredients";
 import Button from "../../components/UI/Button";
 
-const AddRecipe = ({onClose}) => {
+const AddRecipe = ({ onClose }) => {
   const { recipeAdd } = useContext(RecipesContext);
   const modal = useRef();
   const titleRef = useRef();
@@ -20,13 +20,15 @@ const AddRecipe = ({onClose}) => {
 
   const handleSave = () => {
     if (
-      titleRef.current.value.trim() === '' ||
-      proteinRef.current.value.trim() === '' ||
-      fatsRef.current.value.trim() === '' ||
-      carbRef.current.value.trim() === '' ||
-      caloriesRef.current.value.trim() === ''
+      titleRef.current.value.trim() === "" ||
+      proteinRef.current.value.trim() === "" ||
+      fatsRef.current.value.trim() === "" ||
+      carbRef.current.value.trim() === "" ||
+      caloriesRef.current.value.trim() === ""
     ) {
-      setErrorMessage(<p className="mb-5 text-red-700">"Fields cannot be empty!"</p>);
+      setErrorMessage(
+        <p className="mb-5 text-red-700">"Fields cannot be empty!"</p>
+      );
       modal.current.open();
     } else {
       onClose();
@@ -38,14 +40,14 @@ const AddRecipe = ({onClose}) => {
         fats: parseInt(fatsRef.current.value),
         carbohydrates: parseInt(carbRef.current.value),
         calories: parseInt(caloriesRef.current.value),
-        ingredients: ingredientsRef.current.getIngredients() 
-      })
-      titleRef.current.value = '';
-      descRef.current.value = '';
-      proteinRef.current.value = '';
-      fatsRef.current.value = '';
-      carbRef.current.value = '';
-      caloriesRef.current.value = '';
+        ingredients: ingredientsRef.current.getIngredients(),
+      });
+      titleRef.current.value = "";
+      descRef.current.value = "";
+      proteinRef.current.value = "";
+      fatsRef.current.value = "";
+      carbRef.current.value = "";
+      caloriesRef.current.value = "";
       ingredientsRef.current.clearInputs();
     }
   };
@@ -55,7 +57,9 @@ const AddRecipe = ({onClose}) => {
       <Modal ref={modal}>{errorMessage}</Modal>
       <section className="mb-5 rounded-lg p-5">
         <header>
-          <h3 className="text-center text-xl mb-5">Add recipe to your recipe book:</h3>
+          <h3 className="text-center text-xl mb-5">
+            Add recipe to your recipe book:
+          </h3>
         </header>
         <form
           onSubmit={(e) => {
@@ -63,20 +67,26 @@ const AddRecipe = ({onClose}) => {
           }}
           className="mx-5 rounded-md p-5 flex flex-col border-2 border-slate-300"
         >
-            <Input
-              label="Recipe title:"
-              inputType="text"
-              ref={titleRef}
-              labelClass="text-sm"
-              inputClass="border-b-2 border-b-dark-green p-1 rounded-sm"
-              placeholder="Recipe title"
-            />
-            <label className="text-sm mt-2">Recipe category:</label>
-            <select ref={categoryRef} className="border-b-2 border-b-dark-green rounded-sm py-1 mb-2">
-              <option value="sweet">Sweet</option>
-              <option value="snack">Snack</option>
-              <option value="main">Main Dish</option>
-            </select>
+          <Input
+            label="Recipe title:"
+            inputType="text"
+            ref={titleRef}
+            labelClass="text-sm"
+            inputClass="border-b-2 border-b-dark-green p-1 rounded-sm"
+            placeholder="Recipe title"
+          />
+          <label className="text-sm mt-2">Recipe category:</label>
+          <select
+            ref={categoryRef}
+            className="border-b-2 border-b-dark-green rounded-sm py-1 mb-2"
+          >
+            <option value="breakfast">Breakfast</option>
+            <option value="snack">Snack</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="dessert">Dessert</option>
+            <option value="sweet">Sweet</option>
+          </select>
           <label className="text-sm">Recipe description:</label>
           <textarea
             className="whitespace-pre-line border-2 border-dark-green rounded-sm"

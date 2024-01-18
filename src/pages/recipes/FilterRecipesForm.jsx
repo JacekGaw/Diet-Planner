@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { RecipesContext } from "../../store/recipes-context";
 import { useSearchParams } from "react-router-dom";
 
@@ -13,9 +13,17 @@ const FilterRecipesForm = () => {
     search: "",
   });
 
+  useEffect(() => {
+    setSearchParams({});
+    sortRef.current.value = "oldest";
+    categoryRef.current.value = "all";
+    searchRef.current.value = "";
+  }, [])
+
   const getUniq = (recipes) => {
     let arr = [...new Set(recipes.map((recipe) => recipe.category))];
     return arr;
+   
   };
 
   const handleSearch = (e) => {
@@ -35,20 +43,22 @@ const FilterRecipesForm = () => {
         placeholder="Search titles"
         onChange={handleSearch}
         ref={searchRef}
+        className="p-2 rounded-md border border-grey-900 focus:outline-green"
       ></input>
 
-      <label htmlFor="category">Category: </label>
-      <select id="category" ref={categoryRef} onChange={handleSearch}>
+      <label htmlFor="category" className="ml-2">Category: </label>
+      <select id="category" ref={categoryRef} onChange={handleSearch} className="p-2 rounded-md border border-grey-900 text-slate-600 focus:outline-green">
         <option value="all">All</option>
-        {getUniq(recipes).map((item, index) => (
-          <option value={item} className="capitalize" key={index}>
-            {item}
-          </option>
-        ))}
+        <option value="breakfast">Breakfast</option>
+        <option value="snack">Snack</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="dessert">Dessert</option>
+        <option value="sweet">Sweet</option>
       </select>
-      <label htmlFor="sort">Sort: </label>
-      <select id="sort" ref={sortRef} onChange={handleSearch}>
-        <option value="oldest">From Oldest</option>
+      <label htmlFor="sort" className="ml-2">Sort: </label>
+      <select id="sort" ref={sortRef} onChange={handleSearch} className="p-2 rounded-md border border-grey-900 text-slate-600 focus:outline-green">
+        <option value="oldest" defaultValue>From Oldest</option>
         <option value="newest">From Newest</option>
         <option value="favourites">Favourites First</option>
       </select>

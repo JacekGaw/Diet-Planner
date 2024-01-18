@@ -22,7 +22,7 @@ const Recipes = () => {
       <Modal ref={modalRef}>
         <AddRecipe onClose={handleCloseModal} />
       </Modal>
-      <section className=" z-0 flex flex-col items-center">
+      <section className="w-full z-0 flex flex-col items-center">
         <header className="w-full relative p-2 z-30 ">
           <h2 className="text-center text-4xl font-regular z-30 drop-shadow-md">
             Recipe Book
@@ -31,10 +31,10 @@ const Recipes = () => {
             menu_book
           </span>
         </header>
-        <div className="max-w-screen-xl flex  justify-end">
+        <div className="pb-1 my-5 w-full max-w-screen-xl flex justify-between items-center gap-10 border-b-2 border-b-slate-300">
           <Button
             onClick={handleChangeVisibility}
-            className="bg-dark-green text-white font-light rounded p-2 text-xs my-5"
+            className="bg-dark-green text-white font-light rounded p-2 text-xs"
           >
             Add recipe
           </Button>
@@ -42,8 +42,8 @@ const Recipes = () => {
         </div>
         <div className="flex w-full justify-center">
         <RecipesList
-          className="flex flex-wrap z-50 max-w-screen-xl"
-          cardStyle="z-50 w-[100%] sm:w-[48%] md:w-[31.3%] xl:w-[23%] m-[1%] bg-white rounded-xl flex flex-col justify-between "
+          className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 z-50 max-w-screen-xl"
+          cardStyle="z-50 bg-white rounded-xl flex flex-col justify-between "
         />
         </div>
       </section>

@@ -1,7 +1,7 @@
 export const SAMPLE_RECIPES = [
     {
         id: 0.19191723944889527,
-        add_date: "3.1.2024",
+        add_date: new Date("2024-01-01"),
         title: "Jajecznica z boczkiem",
         category: "breakfast",
         description: "Jajecznica z boczkiem, idealna na śniadanie, szybki, łatwy, jednogarnkowy przepis. Bardzo wiele możliwości kombinacji i uzupełnienia o inne dodatki. Najlepiej do zrobienia na maśle",
@@ -24,7 +24,7 @@ export const SAMPLE_RECIPES = [
     },
     {
         id: 0.7899567626143982,
-        add_date: "3.1.2024",
+        add_date: new Date("2024-01-02"),
         title: "Owsianka z brzoskwiniami",
         category: "sweet",
         description: "Owsianka z brzoskwiniami. Słodki posiłek. ",
@@ -47,7 +47,7 @@ export const SAMPLE_RECIPES = [
     },
     {
         id: Math.random(),
-        add_date: "02.03.2024",
+        add_date: new Date("2024-01-03"),
         title: "Koktajl z awokado i szpinakiem",
         category: "snack",
         description: "Koktajl z awokado i szpinakiem to połączenie kremowej konsystencji i intensywnego smaku. Miksujemy awokado, świeży szpinak, jogurt naturalny i miód. Koktajl podajemy schłodzony, ozdobiony listkami mięty.",
@@ -85,7 +85,7 @@ export const SAMPLE_RECIPES = [
 
     {
         id: Math.random(),
-        add_date: "03.03.2024",
+        add_date: new Date("2024-01-04"),
         title: "Ratatouille z kuskusem",
         category: "dinner",
         description: "Ratatouille to tradycyjne danie kuchni francuskiej, wzbogacone o aromatyczny kuskus. Warzywa, takie jak bakłażan, cukinia i papryka, dusimy na patelni z ziołami prowansalskimi. Kuskus gotujemy zgodnie z instrukcją, a następnie łączymy z warzywami. Możemy podać posypane świeżą natką pietruszki.",
@@ -123,7 +123,7 @@ export const SAMPLE_RECIPES = [
 
     {
         id: Math.random(),
-        add_date: "04.03.2024",
+        add_date: new Date("2024-01-05"),
         title: "Kurczak w sosie teriyaki z warzywami",
         category: "dinner",
         description: "Soczyste kawałki kurczaka podawane w aromatycznym sosie teriyaki, z dodatkiem kolorowych warzyw. Kurczaka smażymy na patelni, a następnie dusimy w sosie teriyaki razem z marchewką, cukinią i groszkiem. Podajemy z ugotowanym ryżem.",
@@ -173,7 +173,7 @@ export const SAMPLE_RECIPES = [
 
     {
         id: Math.random(),
-        add_date: "05.03.2024",
+        add_date: new Date("2024-01-06"),
         title: "Krewetki w cieście tempura",
         category: "dinner",
         description: "Krewetki w delikatnym cieście tempura to danie pochodzące z kuchni japońskiej. Krewetki obtaczamy w cieście tempura i smażymy na głębokim oleju, aż staną się złociste i chrupiące. Podajemy je z sosem sojowym i posypane koperkiem.",
@@ -217,7 +217,7 @@ export const SAMPLE_RECIPES = [
 
     {
         id: Math.random(),
-        add_date: "06.03.2024",
+        add_date: new Date("2024-01-07"),
         title: "Tarta z malinami i mascarpone",
         category: "dessert",
         description: "Tarta z kruchym ciastem, kremem mascarpone i świeżymi malinami to doskonały deser na letnie dni. Ciasto kruche przygotowujemy z mąki, masła i cukru, a następnie smarujemy je kremem mascarpone i układamy maliny. Całość pieczemy do momentu zrumienienia ciasta.",
@@ -261,7 +261,7 @@ export const SAMPLE_RECIPES = [
 
     {
         id: Math.random(),
-        add_date: "07.03.2024",
+        add_date: new Date("2024-01-08"),
         title: "Zapiekanka ziemniaczana z kiełbasą",
         category: "dinner",
         description: "Zapiekanka ziemniaczana z kiełbasą to syta i rozgrzewająca propozycja na obiad. Ziemniaki obieramy i kroimy na cienkie plastry, a następnie układamy je warstwami z kiełbasą. Całość zalewamy sosem beszamelowym i zapiekamy w piekarniku.",
@@ -299,7 +299,7 @@ export const SAMPLE_RECIPES = [
 
     {
         id: Math.random(),
-        add_date: "08.03.2024",
+        add_date: new Date("2024-01-09"),
         title: "Koktajl proteinowy z bananem",
         category: "snack",
         description: "Koktajl proteinowy z bananem to szybki sposób na uzupełnienie białka po treningu. Mieszamy białko serwatkowe z mlekiem, dodajemy banana i lód, a następnie miksujemy. Koktajl podajemy w wysokim szklankach.",
@@ -336,7 +336,7 @@ export const SAMPLE_RECIPES = [
     },
     {
         id: Math.random(),
-        add_date: "10.03.2024",
+        add_date: new Date("2024-01-10"),
         title: "Kurczak curry z basmati",
         category: "dinner",
         description: "Kurczak curry z basmati to aromatyczne danie, które zadowoli miłośników kuchni indyjskiej. Kawałki kurczaka dusimy w sosie curry z dodatkiem warzyw, a następnie podajemy na ugotowanym ryżu basmati.",
@@ -380,7 +380,7 @@ export const SAMPLE_RECIPES = [
 
     {
         id: Math.random(),
-        add_date: "11.03.2024",
+        add_date: new Date("2024-01-11"),
         title: "Sałatka grecka z oliwkami",
         category: "lunch",
         description: "Sałatka grecka to klasyczne danie śródziemnomorskie, bogate w smaki i aromaty. Składniki to pomidory, ogórek, oliwki, feta i cebula. Całość skrapiamy oliwą z oliwek i posypujemy oregano. Idealna na lekką kolację lub lunch.",
@@ -436,7 +436,7 @@ export const SAMPLE_RECIPES = [
 
     {
         id: Math.random(),
-        add_date: "12.03.2024",
+        add_date: new Date("2024-01-12"),
         title: "Smoothie jagodowe z bananem",
         category: "snack",
         description: "Smoothie jagodowe z bananem to pyszny i zdrowy napój na ciepłe dni. Mieszamy mrożone jagody z banana i jogurtem naturalnym. Możemy dodać miód dla słodkiego smaku. Idealne jako szybki przekąska lub uzupełnienie śniadania.",

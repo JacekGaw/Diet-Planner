@@ -14,7 +14,7 @@ const recipesReducer = (state, action) => {
       ...state.recipes,
       {
         id: Math.random(),
-        add_date: new Date().toLocaleDateString("de-DE"),
+        add_date: new Date(),
         title: action.payload.title,
         category: action.payload.category,
         description: action.payload.description,
