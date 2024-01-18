@@ -13,7 +13,7 @@ const Menu = () => {
   return (
     <menu className="w-full bg-dark-green z-50 px-5">
       <ul className="flex flex-col sm:flex-row justify-between items-center w-full relative">
-        <NavLink to="/">
+        <NavLink to="/" onClick={() => setMenuVisibility(false)}>
           <h2 className="group p-5 text-2xl text-white hover:drop-shadow-md font-bold flex items-center">
             <p className="material-symbols-outlined text-2xl mr-1 group-hover:rotate-6 group-hover:scale-110 transition-all duration-200">
               lunch_dining
@@ -24,11 +24,12 @@ const Menu = () => {
           </h2>
         </NavLink>
         <button className={`flex visible sm:invisible peer absolute top-[35px] right-[5%] -translate-y-[50%] translate-x-[50%] ${menuVisibility && "rotate-180"}`}  onClick={handleMenuVisibility} >
-          <span class="material-symbols-outlined text-white">expand_more</span>
+          <span className="material-symbols-outlined text-white">expand_more</span>
         </button>
 
         <div className={`z-auto flex flex-col sm:flex sm:flex-row ${menuVisibility ? "top-full bg-dark-green" : "hidden"} justify-center`}>
           <NavLink
+          onClick={() => setMenuVisibility(false)}
             to="/recipes"
             className={({ isActive }) =>
               isActive
@@ -39,6 +40,7 @@ const Menu = () => {
             Recipes
           </NavLink>
           <NavLink
+          onClick={() => setMenuVisibility(false)}
             to="/create-plan"
             className={({ isActive }) =>
               isActive
@@ -49,6 +51,7 @@ const Menu = () => {
             Create Plan
           </NavLink>
           <NavLink
+          onClick={() => setMenuVisibility(false)}
             to="/your-plans"
             className={({ isActive }) =>
               isActive

@@ -3,6 +3,7 @@ import AddRecipe from "./AddRecipe";
 import RecipesList from "./RecipesList";
 import Modal from "../../components/UI/Modal";
 import Button from "../../components/UI/Button";
+import FilterRecipesForm from "./FilterRecipesForm";
 
 const Recipes = () => {
   const modalRef = useRef();
@@ -30,15 +31,14 @@ const Recipes = () => {
             menu_book
           </span>
         </header>
-        <div className="w-fulll flex  justify-end">
-
+        <div className="max-w-screen-xl flex  justify-end">
           <Button
             onClick={handleChangeVisibility}
             className="bg-dark-green text-white font-light rounded p-2 text-xs my-5"
           >
             Add recipe
           </Button>
-          
+          <FilterRecipesForm></FilterRecipesForm>
         </div>
         <div className="flex w-full justify-center">
         <RecipesList
